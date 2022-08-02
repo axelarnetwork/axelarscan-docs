@@ -1,0 +1,373 @@
+[
+  {
+    "id": "/cross-chain/transfers",
+    "description": "",
+    "methods": ["post"],
+    "parameters": [
+      {
+        "id": "txHash",
+        "type": "string",
+        "value": "C0CB3812B653A6B1A4AD48C26C5C7B1BB2FF15F96D2C2074EC69AB71E9B504E6"
+      },
+      {
+        "id": "state",
+        "type": "string",
+        "enums": ["pending", "completed"]
+      },
+      {
+        "id": "sourceChain",
+        "type": "string",
+        "value": "osmosis"
+      },
+      {
+        "id": "destinationChain",
+        "type": "string",
+        "value": "polygon"
+      },
+      {
+        "id": "asset",
+        "type": "string",
+        "value": "uusdc"
+      },
+      {
+        "id": "depositAddress",
+        "type": "string",
+        "value": "axelar1vg69vtxpz0c3pjljpfxwzvcuqjhyh4lj4mj7cqwjw7ntl8hy5rdqwm22sz"
+      },
+      {
+        "id": "senderAddress",
+        "type": "string",
+        "value": "osmo17e0m33ts0ph9s84fw7gsdt0lgfursu5gs88rcx"
+      },
+      {
+        "id": "recipientAddress",
+        "type": "string",
+        "value": "0xd146c053f9ea51199d273c769c4fae2a8e12d7b3"
+      },
+      {
+        "id": "fromTime",
+        "type": "unixTime",
+        "value": 1659373200
+      },
+      {
+        "id": "toTime",
+        "type": "unixTime",
+        "value": 1659459600
+      }
+    ]
+  },
+  {
+    "id": "/cross-chain/transfers-status",
+    "description": "",
+    "methods": ["post"],
+    "parameters": [
+      {
+        "id": "txHash",
+        "require": true,
+        "type": "string",
+        "value": "C0CB3812B653A6B1A4AD48C26C5C7B1BB2FF15F96D2C2074EC69AB71E9B504E6"
+      },
+      {
+        "id": "depositAddress",
+        "type": "string",
+        "value": "axelar1vg69vtxpz0c3pjljpfxwzvcuqjhyh4lj4mj7cqwjw7ntl8hy5rdqwm22sz"
+      },
+      {
+        "id": "recipientAddress",
+        "type": "string",
+        "value": "0xd146c053f9ea51199d273c769c4fae2a8e12d7b3"
+      }
+    ]
+  },
+  {
+    "id": "/cross-chain/transfers-stats",
+    "description": "",
+    "methods": ["post"],
+    "parameters": [
+      {
+        "id": "fromTime",
+        "type": "unixTime",
+        "value": 1646240400
+      },
+      {
+        "id": "toTime",
+        "type": "unixTime",
+        "value": 1659459600
+      }
+    ]
+  },
+  {
+    "id": "/cross-chain/assets",
+    "description": "",
+    "methods": ["post"],
+    "parameters": []
+  },
+  {
+    "id": "/cross-chain/tvl",
+    "description": "",
+    "methods": ["post"],
+    "parameters": [
+      {
+        "id": "asset",
+        "require": true,
+        "type": "string",
+        "value": "uusdc"
+      }
+    ]
+  },
+  {
+    "id": "/evm-votes",
+    "description": "",
+    "methods": ["post"],
+    "parameters": [
+      {
+        "id": "txHash",
+        "type": "string",
+        "value": "DBF8CA5CE79786D4ABCA310B1DB38E68C78A1AAA173A017D985433B902B80BBA"
+      },
+      {
+        "id": "pollId",
+        "type": "string",
+        "value": "0x22796fd14951eb8ded5b76ca968fbfde6643ec46ade150e68bde00ca51c66fab_0x7B84F5824dD20394f65B33a42525A231E9712538"
+      },
+      {
+        "id": "transactionId",
+        "type": "string",
+        "value": "0x22796fd14951eb8ded5b76ca968fbfde6643ec46ade150e68bde00ca51c66fab"
+      },
+      {
+        "id": "chain",
+        "type": "string",
+        "value": "polygon"
+      },
+      {
+        "id": "voter",
+        "type": "string",
+        "value": "axelar19fu359586zyl88qpmufwycuan4zfcu8m55n577"
+      },
+      {
+        "id": "vote",
+        "type": "string",
+        "enums": ["yes", "no"]
+      },
+      {
+        "id": "fromTime",
+        "type": "unixTime",
+        "value": 1659373200
+      },
+      {
+        "id": "toTime",
+        "type": "unixTime",
+        "value": 1659459600
+      },
+      {
+        "id": "from",
+        "type": "integer",
+        "value": 0
+      },
+      {
+        "id": "size",
+        "type": "integer",
+        "value": 10
+      }
+    ]
+  },
+  {
+    "id": "/heartbeats",
+    "description": "",
+    "methods": ["post"],
+    "parameters": [
+      {
+        "id": "sender",
+        "require": true,
+        "type": "string",
+        "value": "axelar19fu359586zyl88qpmufwycuan4zfcu8m55n577"
+      },
+      {
+        "id": "fromBlock",
+        "type": "integer",
+        "value": 3238351
+      },
+      {
+        "id": "toBlock",
+        "type": "integer",
+        "value": 3248301
+      },
+      {
+        "id": "from",
+        "type": "integer",
+        "value": 0
+      },
+      {
+        "id": "size",
+        "type": "integer",
+        "value": 200
+      }
+    ]
+  },
+  {
+    "id": "/general-message-passing/searchGMP",
+    "description": "",
+    "is_gmp": true,
+    "methods": ["post"],
+    "parameters": [
+      {
+        "id": "method",
+        "require": true,
+        "type": "string",
+        "value": "searchGMP"
+      },
+      {
+        "id": "contractMethod",
+        "type": "string",
+        "enums": ["callContract", "callContractWithToken"]
+      },
+      {
+        "id": "txHash",
+        "type": "string",
+        "value": "0xcf23ba9d658c71928ced065cb4756282c52442952a5cadede85f6b9de111b1cd"
+      },
+      {
+        "id": "txIndex",
+        "type": "integer",
+        "value": 1
+      },
+      {
+        "id": "sourceChain",
+        "type": "string",
+        "value": "avalanche"
+      },
+      {
+        "id": "destinationChain",
+        "type": "string",
+        "value": "moonbeam"
+      },
+      {
+        "id": "sourceAddress",
+        "type": "string",
+        "value": "0xebDF3AAc44eE77b1b194965dEA863d77BB9EB131"
+      },
+      {
+        "id": "contractAddress",
+        "type": "string",
+        "value": "0x8fE4B6135B80a4640B7E8a0e12da01c31176F60e"
+      },
+      {
+        "id": "senderAddress",
+        "type": "string",
+        "value": "0xD36aac0c9676e984D72823Fb662ce94D3Ab5E551"
+      },
+      {
+        "id": "relayerAddress",
+        "type": "string",
+        "value": "0xD36aac0c9676e984D72823Fb662ce94D3Ab5E551"
+      },
+      {
+        "id": "status",
+        "type": "string",
+        "enums": ["called", "approving", "forecalled", "approved", "executed", "error", "forecallable", "forecallable_without_gas_paid", "not_executed", "not_executed_without_gas_paid"]
+      },
+      {
+        "id": "fromTime",
+        "type": "unixTime",
+        "value": 1659373200
+      },
+      {
+        "id": "toTime",
+        "type": "unixTime",
+        "value": 1659459600
+      },
+      {
+        "id": "from",
+        "type": "integer",
+        "value": 0
+      },
+      {
+        "id": "size",
+        "type": "integer",
+        "value": 10
+      },
+      {
+        "id": "sort",
+        "type": "[Object]",
+        "value": "[{ \"call.block_timestamp\": \"desc\" }]"
+      }
+    ]
+  },
+  {
+    "id": "/general-message-passing/getGasPrice",
+    "description": "",
+    "is_gmp": true,
+    "methods": ["post"],
+    "parameters": [
+      {
+        "id": "method",
+        "require": true,
+        "type": "string",
+        "value": "getGasPrice"
+      },
+      {
+        "id": "sourceChain",
+        "require": true,
+        "type": "string",
+        "value": "avalanche"
+      },
+      {
+        "id": "destinationChain",
+        "require": true,
+        "type": "string",
+        "value": "moonbeam"
+      },
+      {
+        "id": "sourceTokenSymbol",
+        "type": "string",
+        "value": "AVAX"
+      },
+      {
+        "id": "sourceTokenAddress",
+        "type": "string",
+        "value": "0x0000000000000000000000000000000000000000"
+      }
+    ]
+  },
+  {
+    "id": "/general-message-passing/getGasSupportSymbols",
+    "description": "",
+    "is_gmp": true,
+    "methods": ["post"],
+    "parameters": [
+      {
+        "id": "method",
+        "require": true,
+        "type": "string",
+        "value": "getGasSupportSymbols"
+      }
+    ]
+  },
+  {
+    "id": "/general-message-passing/getFees",
+    "description": "",
+    "is_gmp": true,
+    "methods": ["post"],
+    "parameters": [
+      {
+        "id": "method",
+        "require": true,
+        "type": "string",
+        "value": "getFees"
+      },
+      {
+        "id": "sourceChain",
+        "require": true,
+        "type": "string",
+        "value": "avalanche"
+      },
+      {
+        "id": "destinationChain",
+        "require": true,
+        "type": "string",
+        "value": "moonbeam"
+      }
+    ]
+  }
+]

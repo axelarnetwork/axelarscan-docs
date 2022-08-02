@@ -1,0 +1,22 @@
+{
+  "index": {
+    "title": "Introduction",
+    "type": "doc"
+  },
+  "cross-chain": {
+    "title": "Cross-chain",
+    "type": "doc"
+  },
+  "evm-votes": {
+    "title": "EVM votes",
+    "type": "doc"
+  },
+  "heartbeats": {
+    "title": "Heartbeats",
+    "type": "doc"
+  },
+  "general-message-passing": {
+    "title": "General Message Passing",
+    "type": "doc"
+  }
+}
