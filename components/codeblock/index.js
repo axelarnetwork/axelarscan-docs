@@ -7,7 +7,7 @@ export default ({
   return (
     <SyntaxHighlighter
       language={language}
-      className="code-block my-2"
+      className="code-block max-h-screen overflow-y-auto"
     >
       {typeof children === 'string' ?
         children.replace(/\\/g, '\\\n') :
