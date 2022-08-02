@@ -36,7 +36,7 @@ export default () => {
                       href={explorer_url}
                       target="_blank"
                       rel="noopenner noreferrer"
-                      className="text-base sm:text-lg"
+                      className="text-base"
                     >
                       {new URL(explorer_url).host}
                     </a>
@@ -53,7 +53,7 @@ export default () => {
                     API
                   </div>
                   <div className="bg-slate-50 dark:bg-zinc-900 rounded-lg flex items-center justify-between space-x-2 py-1 px-2.5">
-                    <div className="text-slate-600 dark:text-slate-200 text-base sm:text-lg">
+                    <div className="text-slate-600 dark:text-slate-200 text-base">
                       {api_url}
                     </div>
                     <Copy
@@ -69,7 +69,7 @@ export default () => {
                     GMP API
                   </div>
                   <div className="bg-slate-50 dark:bg-zinc-900 rounded-lg flex items-center justify-between space-x-2 py-1 px-2.5">
-                    <div className="text-slate-600 dark:text-slate-200 text-base sm:text-lg">
+                    <div className="text-slate-600 dark:text-slate-200 text-base">
                       {gmp_api_url}
                     </div>
                     <Copy

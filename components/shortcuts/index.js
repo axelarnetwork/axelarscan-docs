@@ -64,7 +64,7 @@ export default () => {
             <div className="mb-1">
               <div className="flex flex-col items-start space-y-1">
                 {icon}
-                <span className="text-lg sm:text-sm font-semibold">
+                <span className="text-sm font-semibold">
                   {title}
                 </span>
               </div>
