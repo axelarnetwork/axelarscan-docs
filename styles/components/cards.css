@@ -1,5 +1,5 @@
 .card {
-  @apply rounded-lg border p-3;
+  @apply rounded-lg border p-2;
   &.clickable {
     @apply cursor-pointer;
     &:hover:not(:disabled) {
@@ -10,17 +10,17 @@
 
 .dark {
   .card {
-    @apply border-gray-800;
+    @apply border-slate-800;
     &.clickable {
       &:hover:not(:disabled) {
-        @apply bg-gray-900;
+        @apply bg-slate-900;
       }
     }
   }
 }
 
 .card-index {
-  @apply rounded-lg border cursor-pointer p-6;
+  @apply rounded-lg border cursor-pointer p-4;
   &:hover:not(:disabled) {
     @apply bg-white shadow-lg border-0;
   }
@@ -28,9 +28,9 @@
 
 .dark {
   .card-index {
-    @apply border-gray-800;
+    @apply border-slate-800;
     &:hover:not(:disabled) {
-      @apply bg-gray-900;
+      @apply bg-slate-900;
     }
   }
 }

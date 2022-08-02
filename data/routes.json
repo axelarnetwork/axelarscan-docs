@@ -1,7 +1,7 @@
 [
   {
     "id": "/cross-chain/transfers",
-    "description": "",
+    "description": "The Search API provides query-based access to the cross-chain transfer information on the Axelar network. The response includes only the transfers that the Axelar network has already confirmed.",
     "methods": ["post"],
     "parameters": [
       {
@@ -17,12 +17,18 @@
       {
         "id": "sourceChain",
         "type": "string",
-        "value": "osmosis"
+        "value": "osmosis",
+        "override": {
+          "value": "osmosis"
+        }
       },
       {
         "id": "destinationChain",
         "type": "string",
-        "value": "polygon"
+        "value": "polygon",
+        "override": {
+          "value": "polygon"
+        }
       },
       {
         "id": "asset",
@@ -71,7 +77,7 @@
   },
   {
     "id": "/cross-chain/transfers-status",
-    "description": "",
+    "description": "The API route provides query-based access to the cross-chain transfer information on the Axelar network. This route is suggested to be used for tracking services on applications.",
     "methods": ["post"],
     "parameters": [
       {
@@ -94,7 +100,7 @@
   },
   {
     "id": "/cross-chain/transfers-stats",
-    "description": "",
+    "description": "The API route returns the statistics of the cross-chain transfers by each combination of source chain, destination chain, and assets.",
     "methods": ["post"],
     "parameters": [
       {
@@ -111,13 +117,13 @@
   },
   {
     "id": "/cross-chain/assets",
-    "description": "",
+    "description": "The API route provides all assets information supported on the Axelar network.",
     "methods": ["post"],
     "parameters": []
   },
   {
     "id": "/cross-chain/tvl",
-    "description": "",
+    "description": "The API route provides the latest total volume locked (TVL) on the Axelar network, separated by assets.",
     "methods": ["post"],
     "parameters": [
       {
@@ -130,7 +136,7 @@
   },
   {
     "id": "/evm-votes",
-    "description": "",
+    "description": "The API route provides the information of each EVM vote transaction, including the transaction hash, block height, voter address, chains, poll id, etc.",
     "methods": ["post"],
     "parameters": [
       {
@@ -156,7 +162,10 @@
       {
         "id": "voter",
         "type": "string",
-        "value": "axelar19fu359586zyl88qpmufwycuan4zfcu8m55n577"
+        "value": "axelar19fu359586zyl88qpmufwycuan4zfcu8m55n577",
+        "override": {
+          "value": "axelar19fu359586zyl88qpmufwycuan4zfcu8m55n577"
+        }
       },
       {
         "id": "vote",
@@ -181,13 +190,16 @@
       {
         "id": "size",
         "type": "integer",
-        "value": 10
+        "value": 10,
+        "override": {
+          "value": 10
+        }
       }
     ]
   },
   {
     "id": "/heartbeats",
-    "description": "",
+    "description": "The API route provides information on each validator's submitted heartbeat.",
     "methods": ["post"],
     "parameters": [
       {
@@ -223,7 +235,7 @@
   },
   {
     "id": "/general-message-passing/searchGMP",
-    "description": "",
+    "description": "The search API route provides query-based access to GMP transfers and related transactions and statuses.",
     "is_gmp": true,
     "methods": ["post"],
     "parameters": [
@@ -315,7 +327,7 @@
   },
   {
     "id": "/general-message-passing/getGasPrice",
-    "description": "",
+    "description": "The API route provides a gas price conversion rate for each source and destination chain. It can be used as a part of estimating the gas fee. Please note that a complete method that provides the estimated gas fee is available on the [AxelarJS SDK](https://docs.axelar.dev/dev/axelarjs-sdk/axelar-query-api#estimategasfee).",
     "is_gmp": true,
     "methods": ["post"],
     "parameters": [
@@ -354,7 +366,7 @@
   },
   {
     "id": "/general-message-passing/getGasSupportSymbols",
-    "description": "",
+    "description": "The API route provides all supported token symbols for the gas fee on the Axelar network's General Message Passing.",
     "is_gmp": true,
     "methods": ["post"],
     "parameters": [
@@ -368,7 +380,7 @@
   },
   {
     "id": "/general-message-passing/getFees",
-    "description": "",
+    "description": "The API route provides the based fee information for each combination of source & destination chains.",
     "is_gmp": true,
     "methods": ["post"],
     "parameters": [
