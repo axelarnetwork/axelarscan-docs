@@ -8,3 +8,12 @@ export const equals_ignore_case = (
   a,
   b,
 ) => (!a && !b) || a?.toLowerCase() === b?.toLowerCase()
+
+export const is_json = s => {
+  try {
+    JSON.parse(s)
+  } catch (e) {
+    return false
+  }
+  return true
+}

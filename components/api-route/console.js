@@ -5,7 +5,7 @@ import _ from 'lodash'
 import { TailSpin } from 'react-loader-spinner'
 
 import Codeblock from '../codeblock'
-import { equals_ignore_case } from '../../utils'
+import { equals_ignore_case, is_json } from '../../utils'
 import environments from '../../data/environments.json'
 import routes from '../../data/routes.json'
 
@@ -17,6 +17,7 @@ export default () => {
   const { pathname } = { ...router }
 
   const [fetching, setFetching] = useState(false)
+  const [input, setInput] = useState(undefined)
   const [data, setData] = useState(null)
   const [response, setResponse] = useState(undefined)
 
@@ -48,10 +49,13 @@ export default () => {
   const request = async () => {
     setFetching(true)
     try {
+      const _data = is_json(input) ?
+        JSON.parse(input) :
+        data
       const method = (_.head(methods) || 'post').toUpperCase()
       const response = await fetch(endpoint_url, {
         method,
-        body: JSON.stringify(data),
+        body: JSON.stringify(_data),
       }).catch(error => { return null })
       setResponse(response && await response.json())
     } catch (error) {
@@ -59,6 +63,8 @@ export default () => {
     }
     setFetching(false)
   }
+
+  const disabled = fetching || (input !== undefined && !is_json(input))
 
   return (
     <div className="space-y-4 mx-1">
@@ -68,12 +74,18 @@ export default () => {
             Request {methods?.includes('get') ? 'Params' : 'Body'}
           </div>
           <button
+            disabled={disabled}
             onClick={() => request()}
-            className="bg-blue-600 dark:bg-blue-800 shadow-lg dark:shadow dark:shadow-slate-400 rounded-xl uppercase text-white font-semibold py-1.5 px-3"
+            className={`${disabled ? 'bg-slate-100 dark:bg-zinc-900 text-slate-400 dark:text-slate-600' : 'bg-blue-600 dark:bg-blue-800 text-white'} shadow-lg dark:shadow dark:shadow-slate-400 rounded-xl uppercase font-semibold py-1.5 px-3`}
           >
             Request
           </button>
         </div>
+        <textarea
+          value={input === undefined ? JSON.stringify(data, {}, '\t') : input}
+          onChange={e => setInput(e.target.value)}
+          className="w-full h-60 bg-slate-100 dark:bg-zinc-900 rounded-xl py-3 px-4"
+        />
       </div>
       {(response !== undefined || fetching) && (
         <div className="space-y-2">
