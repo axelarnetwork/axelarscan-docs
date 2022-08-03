@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react'
 import _ from 'lodash'
 import { TailSpin } from 'react-loader-spinner'
 
+import Copy from '../copy'
 import Codeblock from '../codeblock'
 import { equals_ignore_case, is_json } from '../../utils'
 import environments from '../../data/environments.json'
@@ -89,8 +90,17 @@ export default () => {
       </div>
       {(response !== undefined || fetching) && (
         <div className="space-y-2">
-          <div className="text-lg font-semibold">
-            Response
+          <div className="flex items-center justify-between space-x-2">
+            <div className="text-lg font-semibold">
+              Response
+            </div>
+            <Copy
+              value={JSON.stringify(response)}
+              title={<span className="cursor-pointer text-slate-400 dark:text-slate-600 font-light mr-0.5">
+                Copy to Clipboard
+              </span>}
+              size={20}
+            />
           </div>
           {fetching ?
             <TailSpin

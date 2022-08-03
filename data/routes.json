@@ -116,6 +116,12 @@
     ]
   },
   {
+    "id": "/cross-chain/chains",
+    "description": "The API route provides all chains information supported on the Axelar network.",
+    "methods": ["post"],
+    "parameters": []
+  },
+  {
     "id": "/cross-chain/assets",
     "description": "The API route provides all assets information supported on the Axelar network.",
     "methods": ["post"],
