@@ -94,13 +94,15 @@ export default () => {
             <div className="text-lg font-semibold">
               Response
             </div>
-            <Copy
-              value={JSON.stringify(response)}
-              title={<span className="cursor-pointer text-slate-400 dark:text-slate-600 font-light mr-0.5">
-                Copy to Clipboard
-              </span>}
-              size={20}
-            />
+            {!fetching && (
+              <Copy
+                value={JSON.stringify(response)}
+                title={<span className="cursor-pointer text-slate-400 dark:text-slate-600 font-light mr-0.5">
+                  Copy to Clipboard
+                </span>}
+                size={20}
+              />
+            )}
           </div>
           {fetching ?
             <TailSpin
