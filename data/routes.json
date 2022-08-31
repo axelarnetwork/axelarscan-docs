@@ -262,7 +262,7 @@
         "value": "0xcf23ba9d658c71928ced065cb4756282c52442952a5cadede85f6b9de111b1cd"
       },
       {
-        "id": "txIndex",
+        "id": "txLogIndex",
         "type": "integer",
         "value": 1
       },
