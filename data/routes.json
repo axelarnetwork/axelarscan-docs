@@ -407,6 +407,19 @@
         "require": true,
         "type": "string",
         "value": "moonbeam"
+      },
+      {
+        "id": "sourceTokenSymbol",
+        "type": "string",
+        "value": "AVAX"
+      },
+      {
+        "id": "sourceTokenAddress",
+        "type": "string",
+        "value": "0x0000000000000000000000000000000000000000",
+        "override": {
+          "value": "0x0000000000000000000000000000000000000000"
+        }
       }
     ]
   }
