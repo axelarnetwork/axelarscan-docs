@@ -15,6 +15,10 @@
     "title": "Heartbeats",
     "type": "doc"
   },
+  "batches": {
+    "title": "Batches",
+    "type": "doc"
+  },
   "general-message-passing": {
     "title": "General Message Passing",
     "type": "doc"
