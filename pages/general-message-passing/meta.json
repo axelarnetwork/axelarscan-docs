@@ -1,5 +1,6 @@
 {
   "searchGMP": "Search GMP",
+  "GMPStats": "GMP statistics",
   "getGasPrice": "Gas price",
   "getGasSupportSymbols": "Gas symbols",
   "getFees": "Fees"

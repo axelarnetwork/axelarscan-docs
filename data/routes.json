@@ -395,6 +395,70 @@
     ]
   },
   {
+    "id": "/general-message-passing/GMPStats",
+    "description": "The API route returns the statistics of the General Message Passing (GMP) calls by each combination of source chain, destination chain, and assets.",
+    "is_gmp": true,
+    "methods": ["post"],
+    "parameters": [
+      {
+        "id": "method",
+        "require": true,
+        "type": "string",
+        "value": "GMPStats"
+      },
+      {
+        "id": "contractMethod",
+        "type": "string",
+        "enums": ["callContract", "callContractWithToken"]
+      },
+      {
+        "id": "sourceChain",
+        "type": "string",
+        "value": "avalanche"
+      },
+      {
+        "id": "destinationChain",
+        "type": "string",
+        "value": "moonbeam"
+      },
+      {
+        "id": "sourceAddress",
+        "type": "string",
+        "value": "0xebDF3AAc44eE77b1b194965dEA863d77BB9EB131"
+      },
+      {
+        "id": "contractAddress",
+        "type": "string",
+        "value": "0x8fE4B6135B80a4640B7E8a0e12da01c31176F60e"
+      },
+      {
+        "id": "senderAddress",
+        "type": "string",
+        "value": "0xD36aac0c9676e984D72823Fb662ce94D3Ab5E551"
+      },
+      {
+        "id": "relayerAddress",
+        "type": "string",
+        "value": "0xD36aac0c9676e984D72823Fb662ce94D3Ab5E551"
+      },
+      {
+        "id": "status",
+        "type": "string",
+        "enums": ["called", "approving", "approvable", "forecalled", "approved", "executed", "error", "forecallable", "forecallable_without_gas_paid", "not_executed", "not_executed_without_gas_paid", "insufficient_fee"]
+      },
+      {
+        "id": "fromTime",
+        "type": "unixTime",
+        "value": 1659373200
+      },
+      {
+        "id": "toTime",
+        "type": "unixTime",
+        "value": 1659459600
+      }
+    ]
+  },
+  {
     "id": "/general-message-passing/getGasPrice",
     "description": "The API route provides a gas price conversion rate for each source and destination chain. It can be used as a part of estimating the gas fee. Please note that a complete method that provides the estimated gas fee is available on the [AxelarJS SDK](https://docs.axelar.dev/dev/axelarjs-sdk/axelar-query-api#estimategasfee).",
     "is_gmp": true,
