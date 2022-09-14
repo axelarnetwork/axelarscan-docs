@@ -240,6 +240,12 @@
     ]
   },
   {
+    "id": "inflation",
+    "description": "The API route provides information of the inflation rate in the Axelar Network.",
+    "methods": ["post"],
+    "parameters": []
+  },
+  {
     "id": "/batches",
     "description": "The API route provides a list of the recent command batches that are going to (or have been submitted to) EVM chains.",
     "methods": ["post"],
