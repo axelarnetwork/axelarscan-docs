@@ -240,7 +240,7 @@
     ]
   },
   {
-    "id": "inflation",
+    "id": "/inflation",
     "description": "The API route provides information of the inflation rate in the Axelar Network.",
     "methods": ["post"],
     "parameters": []
