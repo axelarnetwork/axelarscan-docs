@@ -14,7 +14,7 @@ module.exports = withNextra({
         source: '/(.*)',
         headers: createSecureHeaders(),
       },
-    ];
+    ]
   },
   redirects: () => {
     return [
