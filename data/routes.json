@@ -368,7 +368,7 @@
       {
         "id": "status",
         "type": "string",
-        "enums": ["called", "approving", "approvable", "forecalled", "approved", "executed", "error", "forecallable", "forecallable_without_gas_paid", "not_executed", "not_executed_without_gas_paid", "insufficient_fee"]
+        "enums": ["called", "approving", "approvable", "forecalled", "approved", "executing", "executed", "error", "forecallable", "forecallable_without_gas_paid", "not_executed", "not_executed_without_gas_paid", "insufficient_fee"]
       },
       {
         "id": "fromTime",
@@ -450,7 +450,7 @@
       {
         "id": "status",
         "type": "string",
-        "enums": ["called", "approving", "approvable", "forecalled", "approved", "executed", "error", "forecallable", "forecallable_without_gas_paid", "not_executed", "not_executed_without_gas_paid", "insufficient_fee"]
+        "enums": ["called", "approving", "approvable", "forecalled", "approved", "executing", "executed", "error", "forecallable", "forecallable_without_gas_paid", "not_executed", "not_executed_without_gas_paid", "insufficient_fee"]
       },
       {
         "id": "fromTime",
