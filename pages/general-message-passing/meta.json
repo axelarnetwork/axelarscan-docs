@@ -3,5 +3,6 @@
   "GMPStats": "GMP statistics",
   "getGasPrice": "Gas price",
   "getGasSupportSymbols": "Gas symbols",
-  "getFees": "Fees"
+  "getFees": "Fees",
+  "getContracts": "Contracts"
 }

@@ -631,5 +631,19 @@
         }
       }
     ]
+  },
+  {
+    "id": "/general-message-passing/getContracts",
+    "description": "The API route provides a list of Axelar gateway and the Gas Service contract addresses on each EVM-supported chain.",
+    "is_gmp": true,
+    "methods": ["post"],
+    "parameters": [
+      {
+        "id": "method",
+        "require": true,
+        "type": "string",
+        "value": "getContracts"
+      }
+    ]
   }
 ]
