@@ -141,8 +141,84 @@
     ]
   },
   {
+    "id": "/evm-polls",
+    "description": "The API route provides the information of each EVM poll, including the poll id, chain, evm transaction id, transfer id, participants, etc.",
+    "methods": ["post"],
+    "parameters": [
+      {
+        "id": "pollId",
+        "type": "string",
+        "value": "7434",
+        "override": {
+          "value": "7434"
+        }
+      },
+      {
+        "id": "chain",
+        "type": "string",
+        "value": "ethereum"
+      },
+      {
+        "id": "status",
+        "type": "string",
+        "enums": ["completed", "failed", "comfirmed"]
+      },
+      {
+        "id": "transactionId",
+        "type": "string",
+        "value": "0xc6ceb7df529fe558e0e9716dac6dfb9cb8de30a69f47750774d8465ccef5dc26"
+      },
+      {
+        "id": "transferId",
+        "type": "integer",
+        "value": 316641
+      },
+      {
+        "id": "depositAddress",
+        "type": "string",
+        "value": "0xb51dfead39aa0c781d64d2e4c84e310e806ac4c5"
+      },
+      {
+        "id": "voter",
+        "type": "string",
+        "value": "axelar1l6fudyfdc6j3qznkmkl7afk9950nuagqqfhscq",
+        "override": {
+          "value": "axelar1l6fudyfdc6j3qznkmkl7afk9950nuagqqfhscq"
+        }
+      },
+      {
+        "id": "vote",
+        "type": "string",
+        "enums": ["yes", "no", "unsubmitted"]
+      },
+      {
+        "id": "fromTime",
+        "type": "unixTime",
+        "value": 1664150400
+      },
+      {
+        "id": "toTime",
+        "type": "unixTime",
+        "value": 1664236800
+      },
+      {
+        "id": "from",
+        "type": "integer",
+        "value": 0
+      },
+      {
+        "id": "size",
+        "type": "integer",
+        "value": 10,
+        "override": {
+          "value": 10
+        }
+      }
+    ]
+  },
+  {
     "id": "/evm-votes",
-    "description": "The API route provides the information of each EVM vote transaction, including the transaction hash, block height, voter address, chains, poll id, etc.",
+    "description": "The API route provides the information of each EVM vote transaction, including the transaction hash, chain, block height, voter address, poll id, etc.",
     "methods": ["post"],
     "parameters": [
       {

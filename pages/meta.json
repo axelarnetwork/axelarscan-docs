@@ -7,8 +7,12 @@
     "title": "Cross-chain",
     "type": "doc"
   },
+  "evm-polls": {
+    "title": "EVM polls (Beta)",
+    "type": "doc"
+  },
   "evm-votes": {
-    "title": "EVM votes",
+    "title": "EVM votes (Deprecated)",
     "type": "doc"
   },
   "heartbeats": {
