@@ -542,7 +542,7 @@
   },
   {
     "id": "/general-message-passing/estimateTimeSpent",
-    "description": "The API route returns the estimated time spent from the statistics of the General Message Passing (GMP).",
+    "description": "The API route returns the estimated time spent for each GMP call. The returned values are based on the historical data.",
     "is_gmp": true,
     "methods": ["post"],
     "parameters": [
