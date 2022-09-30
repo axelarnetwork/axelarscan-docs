@@ -541,6 +541,55 @@
     ]
   },
   {
+    "id": "/general-message-passing/estimateTimeSpent",
+    "description": "The API route returns the estimated time spent from the statistics of the General Message Passing (GMP).",
+    "is_gmp": true,
+    "methods": ["post"],
+    "parameters": [
+      {
+        "id": "method",
+        "require": true,
+        "type": "string",
+        "value": "estimateTimeSpent"
+      },
+      {
+        "id": "contractMethod",
+        "type": "string",
+        "enums": ["callContract", "callContractWithToken"]
+      },
+      {
+        "id": "sourceChain",
+        "type": "string",
+        "value": "avalanche"
+      },
+      {
+        "id": "destinationChain",
+        "type": "string",
+        "value": "moonbeam"
+      },
+      {
+        "id": "sourceAddress",
+        "type": "string",
+        "value": "0xebDF3AAc44eE77b1b194965dEA863d77BB9EB131"
+      },
+      {
+        "id": "contractAddress",
+        "type": "string",
+        "value": "0x8fE4B6135B80a4640B7E8a0e12da01c31176F60e"
+      },
+      {
+        "id": "fromTime",
+        "type": "unixTime",
+        "value": 1659373200
+      },
+      {
+        "id": "toTime",
+        "type": "unixTime",
+        "value": 1659459600
+      }
+    ]
+  },
+  {
     "id": "/general-message-passing/getGasPrice",
     "description": "The API route provides a gas price conversion rate for each source and destination chain. It can be used as a part of estimating the gas fee. Please note that a complete method that provides the estimated gas fee is available on the [AxelarJS SDK](https://docs.axelar.dev/dev/axelarjs-sdk/axelar-query-api#estimategasfee).",
     "is_gmp": true,
