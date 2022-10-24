@@ -1,6 +1,7 @@
 {
   "searchGMP": "Search GMP",
   "GMPStats": "GMP statistics",
+  "GMPChart": "GMP chart",
   "estimateTimeSpent": "GMP time spent",
   "getGasPrice": "Gas price",
   "getGasSupportSymbols": "Gas symbols",
