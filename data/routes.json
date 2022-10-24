@@ -104,6 +104,85 @@
     "methods": ["post"],
     "parameters": [
       {
+        "id": "sourceChain",
+        "type": "string",
+        "value": "osmosis"
+      },
+      {
+        "id": "destinationChain",
+        "type": "string",
+        "value": "polygon"
+      },
+      {
+        "id": "asset",
+        "type": "string",
+        "value": "uusdc"
+      },
+      {
+        "id": "fromTime",
+        "type": "unixTime",
+        "value": 1646240400
+      },
+      {
+        "id": "toTime",
+        "type": "unixTime",
+        "value": 1659459600
+      }
+    ]
+  },
+  {
+    "id": "/cross-chain/transfers-chart",
+    "description": "The API route provides information used for visualizing Transfers charts on the Transfers page. The provided data include transfer information, such as the number of transfers and volumes for each day in a specific timeframe.",
+    "methods": ["post"],
+    "parameters": [
+      {
+        "id": "sourceChain",
+        "type": "string",
+        "value": "osmosis"
+      },
+      {
+        "id": "destinationChain",
+        "type": "string",
+        "value": "polygon"
+      },
+      {
+        "id": "asset",
+        "type": "string",
+        "value": "uusdc"
+      },
+      {
+        "id": "fromTime",
+        "type": "unixTime",
+        "value": 1646240400
+      },
+      {
+        "id": "toTime",
+        "type": "unixTime",
+        "value": 1659459600
+      }
+    ]
+  },
+  {
+    "id": "/cross-chain/cumulative-volume",
+    "description": "The API route provides the cumulative volume of the cross-chain transfer through the Axelar network. The data from this route are visualized in the Cumulative Volume chart on Axelarscan's Transfers page.",
+    "methods": ["post"],
+    "parameters": [
+      {
+        "id": "sourceChain",
+        "type": "string",
+        "value": "osmosis"
+      },
+      {
+        "id": "destinationChain",
+        "type": "string",
+        "value": "polygon"
+      },
+      {
+        "id": "asset",
+        "type": "string",
+        "value": "uusdc"
+      },
+      {
         "id": "fromTime",
         "type": "unixTime",
         "value": 1646240400
