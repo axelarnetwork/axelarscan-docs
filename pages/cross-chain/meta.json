@@ -1,6 +1,7 @@
 {
   "transfers": "Transfers",
   "transfers-status": "Transfers status",
+  "token-sent": "Token sent (Beta)",
   "transfers-stats": "Transfers statistics",
   "transfers-chart": "Transfers chart",
   "cumulative-volume": "Cumulative volume",

@@ -99,6 +99,61 @@
     ]
   },
   {
+    "id": "/cross-chain/token-sent",
+    "description": "The Search API provides query-based access to the cross-chain token sent information on the Axelar network.",
+    "methods": ["post"],
+    "parameters": [
+      {
+        "id": "txHash",
+        "type": "string",
+        "value": "0xf688ee1ca1dd4e7d1d329c0701bffa3bbcdbef0e2ac2850e150ba22a4195bb93"
+      },
+      {
+        "id": "sourceChain",
+        "type": "string",
+        "value": "polygon"
+      },
+      {
+        "id": "destinationChain",
+        "type": "string",
+        "value": "moonbeam"
+      },
+      {
+        "id": "senderAddress",
+        "type": "string",
+        "value": "0x29daEe1C43b67ABEF66A04a8E31b0B2db013b641"
+      },
+      {
+        "id": "recipientAddress",
+        "type": "string",
+        "value": "0x29daEe1C43b67ABEF66A04a8E31b0B2db013b641"
+      },
+      {
+        "id": "fromTime",
+        "type": "unixTime",
+        "value": 1659373200
+      },
+      {
+        "id": "toTime",
+        "type": "unixTime",
+        "value": 1659459600
+      },
+      {
+        "id": "from",
+        "type": "integer",
+        "value": 0
+      },
+      {
+        "id": "size",
+        "type": "integer",
+        "value": 10,
+        "override": {
+          "value": 5
+        }
+      }
+    ]
+  },
+  {
     "id": "/cross-chain/transfers-stats",
     "description": "The API route returns the statistics of the cross-chain transfers by each combination of source chain, destination chain, and assets.",
     "methods": ["post"],
