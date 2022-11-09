@@ -295,7 +295,7 @@
       {
         "id": "status",
         "type": "string",
-        "enums": ["completed", "failed", "comfirmed"]
+        "enums": ["completed", "failed", "confirmed", "pending"]
       },
       {
         "id": "transactionId",
