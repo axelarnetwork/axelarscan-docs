@@ -326,6 +326,16 @@
         "enums": ["yes", "no", "unsubmitted"]
       },
       {
+        "id": "fromBlock",
+        "type": "integer",
+        "value": 4500000
+      },
+      {
+        "id": "toBlock",
+        "type": "integer",
+        "value": 4510000
+      },
+      {
         "id": "fromTime",
         "type": "unixTime",
         "value": 1664150400
