@@ -15,12 +15,12 @@ const items = [
     url: '/cross-chain',
   },
   {
-    title: 'EVM votes',
+    title: 'EVM polls',
     description: '',
     icon: (
       <MdOutlineHowToVote size={32} />
     ),
-    url: '/evm-votes',
+    url: '/evm-polls',
   },
   {
     title: 'Heartbeats',
