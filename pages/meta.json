@@ -11,10 +11,6 @@
     "title": "EVM polls (Beta)",
     "type": "doc"
   },
-  "evm-votes": {
-    "title": "EVM votes (Deprecated)",
-    "type": "doc"
-  },
   "heartbeats": {
     "title": "Heartbeats",
     "type": "doc"
