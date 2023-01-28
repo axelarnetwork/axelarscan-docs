@@ -475,7 +475,7 @@
       {
         "id": "status",
         "type": "string",
-        "enums": ["called", "approving", "approvable", "express_executed", "approved", "executing", "executed", "error", "express_executable", "express_executable_without_gas_paid", "not_executed", "not_executed_without_gas_paid", "insufficient_fee"]
+        "enums": ["called", "confirming", "confirmable", "express_executed", "confirmed", "approving", "approvable", "approved", "executing", "executed", "error", "express_executable", "express_executable_without_gas_paid", "not_executed", "not_executed_without_gas_paid", "insufficient_fee"]
       },
       {
         "id": "fromTime",
@@ -557,7 +557,7 @@
       {
         "id": "status",
         "type": "string",
-        "enums": ["called", "approving", "approvable", "express_executed", "approved", "executing", "executed", "error", "express_executable", "express_executable_without_gas_paid", "not_executed", "not_executed_without_gas_paid", "insufficient_fee"]
+        "enums": ["called", "confirming", "confirmable", "express_executed", "confirmed", "approving", "approvable", "approved", "executing", "executed", "error", "express_executable", "express_executable_without_gas_paid", "not_executed", "not_executed_without_gas_paid", "insufficient_fee"]
       },
       {
         "id": "fromTime",
@@ -621,7 +621,7 @@
       {
         "id": "status",
         "type": "string",
-        "enums": ["called", "approving", "approvable", "express_executed", "approved", "executing", "executed", "error", "express_executable", "express_executable_without_gas_paid", "not_executed", "not_executed_without_gas_paid", "insufficient_fee"]
+        "enums": ["called", "confirming", "confirmable", "express_executed", "confirmed", "approving", "approvable", "approved", "executing", "executed", "error", "express_executable", "express_executable_without_gas_paid", "not_executed", "not_executed_without_gas_paid", "insufficient_fee"]
       },
       {
         "id": "fromTime",
