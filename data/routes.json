@@ -773,6 +773,21 @@
         "override": {
           "value": "0x0000000000000000000000000000000000000000"
         }
+      },
+      {
+        "id": "destinationContractAddress",
+        "type": "string",
+        "value": "0xce16F69375520ab01377ce7B88f5BA8C48F8D666"
+      },
+      {
+        "id": "symbol",
+        "type": "string",
+        "value": "axlUSDC"
+      },
+      {
+        "id": "amount",
+        "type": "number",
+        "value": 1
       }
     ]
   },
