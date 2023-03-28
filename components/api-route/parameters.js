@@ -66,7 +66,7 @@ export default () => {
                   <th
                     key={j}
                     scope="col"
-                    className={`${i % 2 === 0 ? 'bg-transparent' : 'bg-slate-50 dark:bg-black'} ${i === parameters.length - 1 ? j === 0 ? 'rounded-bl-lg' : j === COLUMNS.length - 1 ? 'rounded-br-lg' : '' : ''} border-none whitespace-nowrap py-3 px-4 ${className || ''}`}
+                    className={`${i % 2 === 0 ? 'bg-transparent' : 'bg-slate-50 dark:bg-black'} ${i === parameters.length - 1 ? j === 0 ? 'rounded-bl-lg' : j === COLUMNS.length - 1 ? 'rounded-br-lg' : '' : ''} border-none py-3 px-4 ${className || ''}`}
                   >
                     {type === 'boolean' ?
                       (!!p[field]).toString() :

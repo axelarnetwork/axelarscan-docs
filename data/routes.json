@@ -787,7 +787,7 @@
       {
         "id": "symbol",
         "type": "string",
-        "value": "axlUSDC"
+        "value": "axlUSDC (The parameter corresponds to the token being transferred with the call, and its value is the symbol on the source chain, e.g., USDC on Ethereum, axlUSDC on Polygon.)"
       },
       {
         "id": "amount",
