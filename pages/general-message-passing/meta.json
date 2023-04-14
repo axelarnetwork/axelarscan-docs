@@ -2,6 +2,7 @@
   "searchGMP": "Search GMP",
   "GMPStats": "GMP statistics",
   "GMPChart": "GMP chart",
+  "GMPCumulativeVolume": "GMP cumulative volume",
   "estimateTimeSpent": "GMP time spent",
   "getGasPrice": "Gas price",
   "getGasSupportSymbols": "Gas symbols",
