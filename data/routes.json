@@ -638,6 +638,7 @@
   {
     "id": "/general-message-passing/GMPCumulativeVolume",
     "description": "The API route provides the cumulative volume of the GMP transfer through the Axelar network. The data from this route are visualized in the Cumulative Volume chart on Axelarscan's GMP statistics page.",
+    "is_gmp": true,
     "methods": ["post"],
     "parameters": [
       {
