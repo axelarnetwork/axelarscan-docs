@@ -700,6 +700,70 @@
     ]
   },
   {
+    "id": "/general-message-passing/GMPTotalVolume",
+    "description": "The API route provides the total volume of the GMP transfer through the Axelar network.",
+    "is_gmp": true,
+    "methods": ["post"],
+    "parameters": [
+      {
+        "id": "method",
+        "require": true,
+        "type": "string",
+        "value": "GMPTotalVolume"
+      },
+      {
+        "id": "contractMethod",
+        "type": "string",
+        "enums": ["callContract", "callContractWithToken"]
+      },
+      {
+        "id": "sourceChain",
+        "type": "string",
+        "value": "avalanche"
+      },
+      {
+        "id": "destinationChain",
+        "type": "string",
+        "value": "moonbeam"
+      },
+      {
+        "id": "sourceAddress",
+        "type": "string",
+        "value": "0xebDF3AAc44eE77b1b194965dEA863d77BB9EB131"
+      },
+      {
+        "id": "contractAddress",
+        "type": "string",
+        "value": "0x8fE4B6135B80a4640B7E8a0e12da01c31176F60e"
+      },
+      {
+        "id": "senderAddress",
+        "type": "string",
+        "value": "0xD36aac0c9676e984D72823Fb662ce94D3Ab5E551"
+      },
+      {
+        "id": "relayerAddress",
+        "type": "string",
+        "value": "0xD36aac0c9676e984D72823Fb662ce94D3Ab5E551"
+      },
+      {
+        "id": "status",
+        "type": "string",
+        "enums": ["called", "confirming", "confirmable", "express_executed", "confirmed", "approving", "approvable", "approved", "executing", "executed", "error", "express_executable", "express_executable_without_gas_paid", "executable", "executable_without_gas_paid", "insufficient_fee"]
+      },
+      {
+        "id": "fromTime",
+        "type": "unixTime",
+        "value": 1659373200
+      },
+      {
+        "id": "toTime",
+        "type": "unixTime",
+        "value": 1659459600
+      }
+    ]
+  },
+  {
     "id": "/general-message-passing/estimateTimeSpent",
     "description": "The API route returns the estimated time spent for each GMP call. The returned values are based on the historical data.",
     "is_gmp": true,
