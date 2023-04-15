@@ -195,6 +195,38 @@
     ]
   },
   {
+    "id": "/cross-chain/total-volume",
+    "description": "The API route provides the total volume of the cross-chain transfer through the Axelar network.",
+    "methods": ["post"],
+    "parameters": [
+      {
+        "id": "sourceChain",
+        "type": "string",
+        "value": "osmosis"
+      },
+      {
+        "id": "destinationChain",
+        "type": "string",
+        "value": "polygon"
+      },
+      {
+        "id": "asset",
+        "type": "string",
+        "value": "uusdc"
+      },
+      {
+        "id": "fromTime",
+        "type": "unixTime",
+        "value": 1646240400
+      },
+      {
+        "id": "toTime",
+        "type": "unixTime",
+        "value": 1659459600
+      }
+    ]
+  },
+  {
     "id": "/cross-chain/chains",
     "description": "The API route provides all chains information supported on the Axelar network.",
     "methods": ["post"],
