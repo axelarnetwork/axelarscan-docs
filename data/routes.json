@@ -953,6 +953,11 @@
         "id": "amount",
         "type": "number",
         "value": 1
+      },
+      {
+        "id": "amountInUnits",
+        "type": "BigNumber",
+        "value": "1000000 (Passing either amount or amountInUnits is acceptable.)"
       }
     ]
   },
