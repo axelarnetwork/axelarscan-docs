@@ -1,25 +1,35 @@
 import { useRouter } from 'next/router'
-import { useSelector, shallowEqual } from 'react-redux'
+import { useEffect } from 'react'
+import { useSelector, useDispatch, shallowEqual } from 'react-redux'
 
 import Description from './description'
 import Environment from '../environment'
 import Request from './request'
-import { equals_ignore_case } from '../../utils'
-import environments from '../../data/environments.json'
-import routes from '../../data/routes.json'
+import { getRoutes } from '../../lib/api'
+import { getEnvironment, getRoute } from '../../lib/config'
+import { toArray } from '../../lib/utils'
+import { ROUTES_DATA } from '../../reducers/types'
 
 export default () => {
-  const { environment } = useSelector(state => ({ environment: state.environment }), shallowEqual)
-  const { environment_id } = { ...environment }
+  const dispatch = useDispatch()
+  const { preferences, routes } = useSelector(state => ({ preferences: state.preferences, routes: state.routes }), shallowEqual)
+  const { environment } = { ...preferences }
+  const { routes_data } = { ...routes }
 
   const router = useRouter()
   const { pathname } = { ...router }
 
-  const environment_data = environments.find(e => equals_ignore_case(e?.id, environment_id))
-  const route_data = routes.find(r => equals_ignore_case(r?.id, pathname))
+  useEffect(
+    () => {
+      const getData = async () => dispatch({ type: ROUTES_DATA, value: toArray(await getRoutes()) })
+      getData()
+    },
+    [],
+  )
+
   const data = {
-    ...route_data,
-    environment: environment_data,
+    ...getRoute(pathname, routes_data),
+    environment: getEnvironment(environment),
   }
 
   return (

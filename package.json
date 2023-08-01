@@ -2,7 +2,6 @@
   "name": "axelarscan-docs",
   "version": "1.0.0",
   "description": "Documentation for Axelarscan",
-  "main": "index.js",
   "scripts": {
     "dev": "next",
     "debug": "NODE_OPTIONS='--inspect' next",
@@ -20,28 +19,30 @@
   },
   "homepage": "https://github.com/axelarnetwork/axelarscan-docs#readme",
   "dependencies": {
-    "@redux-devtools/extension": "^3.2.5",
+    "@material-tailwind/react": "^2.0.8",
     "lodash": "^4.17.21",
-    "markdown-to-jsx": "^7.1.7",
-    "next": "^12.2.5",
+    "markdown-to-jsx": "^7.2.1",
+    "next": "^13.4.12",
     "next-secure-headers": "^2.2.0",
-    "nextra": "2.0.0-alpha.48",
-    "nextra-theme-docs": "2.0.0-alpha.48",
-    "postcss-flexbugs-fixes": "^5.0.2",
-    "postcss-import": "^15.0.0",
-    "postcss-preset-env": "^7.8.0",
+    "nextra": "2.0.0",
+    "nextra-theme-docs": "2.0.0",
     "react": "^18.2.0",
     "react-copy-to-clipboard": "^5.1.0",
     "react-dom": "^18.2.0",
-    "react-icons": "^4.4.0",
+    "react-icons": "^4.10.1",
     "react-loader-spinner": "^5.3.4",
-    "react-redux": "^8.0.2",
+    "react-redux": "^8.1.2",
     "react-syntax-highlighter": "^15.5.0",
-    "redux": "^4.2.0"
+    "redux": "^4.2.1"
   },
   "devDependencies": {
-    "autoprefixer": "^10.4.8",
-    "postcss": "^8.4.14",
-    "tailwindcss": "^3.2.4"
+    "@redux-devtools/extension": "^3.2.5",
+    "autoprefixer": "^10.4.14",
+    "postcss": "^8.4.27",
+    "postcss-color-function": "^4.1.0",
+    "postcss-flexbugs-fixes": "^5.0.2",
+    "postcss-import": "^15.1.0",
+    "postcss-preset-env": "^9.1.0",
+    "tailwindcss": "^3.3.3"
   }
 }
