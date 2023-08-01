@@ -1,100 +1,78 @@
 import Link from 'next/link'
-import { FiCode } from 'react-icons/fi'
-import { MdOutlineHowToVote } from 'react-icons/md'
-import { TbActivityHeartbeat } from 'react-icons/tb'
-import { BiMessageDots } from 'react-icons/bi'
+import { FiCode, FiServer, FiSettings } from 'react-icons/fi'
 import { HiArrowNarrowRight } from 'react-icons/hi'
 
-const items = [
+import Image from '../image'
+
+const ITEMS = [
   {
-    title: 'Cross-chain',
+    title: 'Interchain',
     description: '',
-    icon: (
-      <FiCode size={32} />
-    ),
-    url: '/cross-chain',
+    url: '/interchain',
+    icon: <FiCode size={32} />,
   },
   {
-    title: 'EVM polls',
+    title: 'Validators',
     description: '',
-    icon: (
-      <MdOutlineHowToVote size={32} />
-    ),
-    url: '/evm-polls',
+    url: '/validators',
+    icon: <FiServer size={32} />,
   },
   {
-    title: 'Heartbeats',
+    title: 'Axelar',
     description: '',
+    url: '/axelar',
     icon: (
-      <TbActivityHeartbeat size={32} />
+      <div>
+        <div className="block dark:hidden">
+          <Image
+            src="/logos/logo.png"
+            width={32}
+            height={32}
+          />
+        </div>
+        <div className="hidden dark:block">
+          <Image
+            src="/logos/logo_white.png"
+            width={32}
+            height={32}
+          />
+        </div>
+      </div>
     ),
-    url: '/heartbeats',
   },
   {
-    title: 'General Message Passing',
+    title: 'Resources',
     description: '',
-    icon: (
-      <BiMessageDots size={32} />
-    ),
-    url: '/general-message-passing',
+    url: '/resources',
+    icon: <FiSettings size={32} />,
   }
 ]
 
 export default () => {
   return (
     <div className="grid grid-flow-row grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 my-6">
-      {items.map((item, i) => {
-        const {
-          icon,
-          title,
-          description,
-          url,
-          external,
-        } = { ...item }
-        const link = (
-          <div className="flex items-center text-blue-500 dark:text-blue-400 space-x-1.5">
-            <span>
-              Documentation
-            </span>
-            <HiArrowNarrowRight size={16} className="mt-0.5" />
-          </div>
-        )
-        const element = (
-          <div className="card-index h-full flex flex-col justify-between">
-            <div className="mb-1">
-              <div className="flex flex-col items-start space-y-1">
-                {icon}
-                <span className="text-sm font-semibold">
-                  {title}
-                </span>
+      {ITEMS.map((d, i) => {
+        const { title, description, url, icon } = { ...d }
+        return (
+          <Link key={i} href={url} className="no-underline text-black dark:text-white">
+            <div className="card-index h-full flex flex-col justify-between">
+              <div className="mb-1">
+                <div className="flex flex-col items-start space-y-1">
+                  {icon}
+                  <span className="text-sm font-semibold">
+                    {title}
+                  </span>
+                </div>
+                <div className="text-slate-400 dark:text-slate-500 mt-2">
+                  {description}
+                </div>
               </div>
-              <div className="text-slate-500 dark:text-slate-400 mt-2">
-                {description}
+              <div className="flex items-center text-blue-500 dark:text-blue-400 space-x-1.5">
+                <span>Documentation</span>
+                <HiArrowNarrowRight size={16} className="mt-0.5" />
               </div>
             </div>
-            {link}
-          </div>
-        )
-
-        return (
-          external ?
-            <a
-              key={i}
-              href={url}
-              target="_blank"
-              rel="noopenner noreferrer"
-              className="no-underline text-black dark:text-white"
-            >
-              {element}
-            </a> :
-            <Link
-              key={i}
-              href={url}
-            >
-              <a className="no-underline text-black dark:text-white">
-                {element}
-              </a>
-            </Link>
+          </Link>
         )
       })}
     </div>

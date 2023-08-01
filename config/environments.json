@@ -1,0 +1,16 @@
+[
+  {
+    "id": "mainnet",
+    "name": "Mainnet",
+    "explorer_url": "https://axelarscan.io",
+    "api_url": "https://api.axelarscan.io",
+    "gmp_api_url": "https://api.gmp.axelarscan.io"
+  },
+  {
+    "id": "testnet",
+    "name": "Testnet",
+    "explorer_url": "https://testnet.axelarscan.io",
+    "api_url": "https://testnet.api.axelarscan.io",
+    "gmp_api_url": "https://testnet.api.gmp.axelarscan.io"
+  }
+]

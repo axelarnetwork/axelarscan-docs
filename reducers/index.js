@@ -1,7 +1,6 @@
 import { combineReducers } from 'redux'
 
-import environment from './environment'
+import preferences from './preferences'
+import routes from './routes'
 
-export default combineReducers({
-  environment,
-})
+export default combineReducers({ preferences, routes })

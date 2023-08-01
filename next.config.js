@@ -8,26 +8,8 @@ const withNextra = require('nextra')({
 })
 
 module.exports = withNextra({
-  headers: () => {
-    return [
-      {
-        source: '/(.*)',
-        headers: createSecureHeaders(),
-      },
-    ]
-  },
-  redirects: () => {
-    return [
-      {
-        source: '/cross-chain',
-        destination: '/cross-chain/transfers',
-        statusCode: 301,
-      },
-      {
-        source: '/general-message-passing',
-        destination: '/general-message-passing/searchGMP',
-        statusCode: 301,
-      },
-    ]
+  headers: () => { return [{ source: '/(.*)', headers: createSecureHeaders() }] },
+  experimental: {
+    appDir: false,
   },
 })

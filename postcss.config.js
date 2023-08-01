@@ -5,6 +5,7 @@ module.exports = {
     'autoprefixer',
     'postcss-import',
     'postcss-nested',
+    'postcss-color-function',
     'postcss-flexbugs-fixes',
     [
       'postcss-preset-env',
@@ -15,8 +16,8 @@ module.exports = {
         stage: 3,
         features: {
           'custom-properties': false
-        }
-      }
+        },
+      },
     ]
   ]
 }

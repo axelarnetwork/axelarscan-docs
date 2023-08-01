@@ -1,0 +1,22 @@
+{
+  "index": {
+    "title": "Introduction",
+    "type": "doc"
+  },
+  "interchain": {
+    "title": "Interchain",
+    "type": "doc"
+  },
+  "validators": {
+    "title": "Validators",
+    "type": "doc"
+  },
+  "axelar": {
+    "title": "Axelar",
+    "type": "doc"
+  },
+  "resources": {
+    "title": "Resources",
+    "type": "doc"
+  }
+}
