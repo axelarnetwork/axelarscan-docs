@@ -1,5 +1,6 @@
 {
   "interchainChart": "Interchain Chart",
+  "interchainTotalVolume": "Interchain Total Volume",
   "interchainTotalFee": "Interchain Total Fee",
   "interchainTotalActiveUsers": "Interchain Total Active Users",
   "searchTransfers": "Search Transfers",
