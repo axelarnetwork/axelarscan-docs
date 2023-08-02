@@ -35,7 +35,7 @@ export default () => {
         </tr>
       </thead>
       <tbody>
-        {toArray(parameters).length < 1 ?
+        {parameters && toArray(parameters).length < 1 ?
           <tr className="border-none border-b">
             <th scope="col" className="bg-transparent border-none whitespace-nowrap text-slate-400 dark:text-slate-500 font-normal italic py-3 px-4">
               No parameters

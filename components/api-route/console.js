@@ -67,7 +67,7 @@ export default () => {
           </button>
         </div>
         <textarea
-          value={input === undefined ? JSON.stringify(data, {}, '\t') : input}
+          value={input === undefined && data ? JSON.stringify(data, {}, '\t') : input}
           onChange={e => setInput(e.target.value)}
           className="w-full h-60 bg-slate-50 dark:bg-slate-900 rounded-xl py-3 px-4"
         />
