@@ -9,6 +9,15 @@ const withNextra = require('nextra')({
 
 module.exports = withNextra({
   headers: () => { return [{ source: '/(.*)', headers: createSecureHeaders() }] },
+  redirects: async () => {
+    return [
+      {
+        source: '/general-message-passing/:slug',
+        destination: '/interchain/:slug',
+        permanent: true,
+      },
+    ]
+  },
   experimental: {
     appDir: false,
   },
