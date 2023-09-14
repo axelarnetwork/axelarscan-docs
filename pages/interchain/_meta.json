@@ -15,6 +15,7 @@
   "getDataMapping": "Data Mapping",
   "getGasPrice": "Gas Price",
   "getFees": "Fees",
+  "estimateGasFee": "Estimate Gas Fee",
   "GMPStats": "GMP Stats",
   "GMPChart": "GMP Chart",
   "GMPCumulativeVolume": "GMP Cumulative Volume",
