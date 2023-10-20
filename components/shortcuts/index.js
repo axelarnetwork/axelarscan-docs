@@ -8,19 +8,19 @@ const ITEMS = [
   {
     title: 'Interchain',
     description: '',
-    url: '/interchain',
+    url: '/interchain/interchainChart',
     icon: <FiCode size={32} />,
   },
   {
     title: 'Validators',
     description: '',
-    url: '/validators',
+    url: '/validators/searchUptimes',
     icon: <FiServer size={32} />,
   },
   {
     title: 'Axelar',
     description: '',
-    url: '/axelar',
+    url: '/axelar/getCirculatingSupply',
     icon: (
       <div>
         <div className="block dark:hidden">
@@ -43,7 +43,7 @@ const ITEMS = [
   {
     title: 'Resources',
     description: '',
-    url: '/resources',
+    url: '/resources/getChains',
     icon: <FiSettings size={32} />,
   }
 ]
