@@ -1,6 +1,7 @@
 {
   "getCirculatingSupply": "Circulating Supply",
   "getTotalSupply": "Total Supply",
+  "getTokenInfo": "AXL Token Info",
   "getInflation": "Inflation",
   "searchPolls": "Search Polls",
   "searchBatches": "Search Batches"
