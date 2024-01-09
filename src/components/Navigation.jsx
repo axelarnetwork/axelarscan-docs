@@ -178,7 +178,7 @@ function NavigationGroup({ group, className }) {
                         <NavLink
                           href={`${link.href}#${section.id}`}
                           tag={section.tag}
-                          active={section.id === window.location.hash.substring(1)}
+                          active={typeof window !== 'undefined' && section.id === window.location.hash.substring(1)}
                           isAnchorLink
                        >
                           {section.title}
