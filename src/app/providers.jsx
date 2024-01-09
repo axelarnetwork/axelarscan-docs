@@ -67,7 +67,7 @@ const ConfigLoader = () => {
       })))
     }
     getData()
-  }, [])
+  }, [setAxelarscan, setValidator, setTokenTransfer, setGMP])
 
   return null
 }
