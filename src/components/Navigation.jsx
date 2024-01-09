@@ -121,8 +121,9 @@ function NavigationGroup({ group, className }) {
   let isInsideMobileNavigation = useIsInsideMobileNavigation()
 
   const APIMethodsStore = useAPIMethodsStore()
+  const apiName = getAPINameFromPathname(usePathname())
   let [pathname, sections] = useInitialValue(
-    [usePathname(), useSectionStore((s) => APIMethodsStore[getAPINameFromPathname(usePathname())]?.methods?.map(d => ({ id: d.id, title: d.id, tag: d.parameters.length === 0 ? 'GET' : 'POST' })) || s.sections)],
+    [usePathname(), useSectionStore((s) => APIMethodsStore[apiName]?.methods?.map(d => ({ id: d.id, title: d.id, tag: d.parameters.length === 0 ? 'GET' : 'POST' })) || s.sections)],
     isInsideMobileNavigation,
   )
 
@@ -218,7 +219,7 @@ export function Navigation(props) {
 
   useEffect(() => {
     if (APIMethodsStore[getAPINameFromPathname(pathname)]?.methods?.find(d => d.id === window.location.hash.substring(1))) router.push(`${pathname}${window.location.hash}`)
-  }, [APIMethodsStore])
+  }, [pathname, router, APIMethodsStore])
 
   return (
     <nav {...props}>
