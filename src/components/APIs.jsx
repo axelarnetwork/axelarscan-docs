@@ -13,7 +13,7 @@ const apis = [
     href: '/axelarscan',
     name: 'Axelarscan API',
     description:
-      'Learn about the contact model and how to create, retrieve, update, delete, and list contacts.',
+      'Retrieve information about the Axelar network and the AXL token. Access details like Circular supply, Inflation, TVL, and more.',
     icon: TbAnalyze,
     pattern: {
       y: 16,
@@ -27,7 +27,7 @@ const apis = [
     href: '/validator',
     name: 'Validator API',
     description:
-      'Learn about the conversation model and how to create, retrieve, update, delete, and list conversations.',
+      'Access metrics associated with validators on the Axelar network, including heartbeat, uptime, proposed blocks, and more.',
     icon: TbServer,
     pattern: {
       y: -6,
@@ -41,7 +41,7 @@ const apis = [
     href: '/token-transfer',
     name: 'Token Transfer API',
     description:
-      'Learn about the message model and how to create, retrieve, update, delete, and list messages.',
+      'Gain insights into Axelar\'s Cross-Chain Token Transfer, covering status updates and related statistics.',
     icon: TbArrowsExchange,
     pattern: {
       y: 32,
@@ -55,7 +55,7 @@ const apis = [
     href: '/gmp',
     name: 'GMP API',
     description:
-      'Learn about the group model and how to create, retrieve, update, delete, and list groups.',
+      'Obtain information related to Axelar\'s GMP calls, including status updates and gas estimation details.',
     icon: FiCode,
     pattern: {
       y: 22,
