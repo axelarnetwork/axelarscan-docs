@@ -12,11 +12,12 @@ import { useMobileNavigationStore } from '@/components/MobileNavigation'
 import { MobileSearch, Search } from '@/components/Search'
 import { ThemeToggle } from '@/components/ThemeToggle'
 
-function TopLevelNavItem({ href, children }) {
+function TopLevelNavItem({ href, target, children }) {
   return (
     <li>
       <Link
         href={href}
+        target={target}
         className="text-sm leading-5 text-zinc-600 transition hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
       >
         {children}
