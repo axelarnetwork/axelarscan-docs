@@ -18,11 +18,12 @@ function useInitialValue(value, condition = true) {
   return condition ? initialValue : value
 }
 
-function TopLevelNavItem({ href, children }) {
+function TopLevelNavItem({ href, target, children }) {
   return (
     <li className="md:hidden">
       <Link
         href={href}
+        target={target}
         className="block py-1 text-sm text-zinc-600 transition hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
       >
         {children}
@@ -224,9 +225,9 @@ export function Navigation(props) {
   return (
     <nav {...props}>
       <ul role="list">
-        <TopLevelNavItem href="https://axelarscan.io">Explorer</TopLevelNavItem>
-        <TopLevelNavItem href="https://docs.axelar.dev">Documentation</TopLevelNavItem>
-        <TopLevelNavItem href="https://discord.com/invite/aRZ3Ra6f7D">Support</TopLevelNavItem>
+        <TopLevelNavItem href="https://axelarscan.io" target="_blank">Explorer</TopLevelNavItem>
+        <TopLevelNavItem href="https://docs.axelar.dev" target="_blank">Documentation</TopLevelNavItem>
+        <TopLevelNavItem href="https://discord.com/invite/aRZ3Ra6f7D" target="_blank">Support</TopLevelNavItem>
         {navigation.map((group, groupIndex) => (
           <NavigationGroup
             key={group.title}
