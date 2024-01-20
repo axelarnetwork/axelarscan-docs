@@ -163,7 +163,7 @@ export const Methods = () => {
     setFetching(false)
   }
 
-  const inputOnChange = (value, id, name) => setBodies({ ...bodies, [id]: { ...bodies[id], [name]: value } })
+  const inputOnChange = (value, id, name) => setBodies({ ...bodies, [id]: Object.fromEntries(Object.entries({ ...bodies[id], [name]: value }).filter(([k, v]) => v || typeof v !== 'string')) })
 
   return methods && (
     <div className="xl:max-w-none flex flex-col">

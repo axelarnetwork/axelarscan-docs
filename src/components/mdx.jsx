@@ -83,6 +83,7 @@ export function Properties({ children }) {
 }
 
 export function Property({ name, children, type, defaultValue, enums, value, onChange }) {
+  const isStringDisplay = ['string', 'BigNumber', 'FixedNumber'].includes(type)
   return (
     <li className="m-0 px-0 py-4 first:pt-0 last:pb-0">
       <dl className="m-0 flex flex-wrap items-center gap-x-3 gap-y-2">
@@ -101,7 +102,7 @@ export function Property({ name, children, type, defaultValue, enums, value, onC
         {typeof defaultValue !== 'undefined' && (
           <>
             <dt className="sr-only">Default</dt>
-            <Tag>default: {defaultValue}</Tag>
+            <Tag>default: {`${isStringDisplay ? '"' : ''}${defaultValue}${isStringDisplay ? '"' : ''}`}</Tag>
           </>
         )}
         {typeof enums !== 'undefined' && (
