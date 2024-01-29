@@ -93,7 +93,7 @@ const getDefaultBodies = (methods, methodId) => {
   return Object.fromEntries(methods.filter(d => !methodId || d.id === methodId).map(d => {
     const { id, parameters } = { ...d }
 
-    return [id, Object.fromEntries(_.concat([['method', id]], parameters.map(p => {
+    return [id, Object.fromEntries(_.concat(/*[['method', id]], */parameters.map(p => {
       const { name, type, required } = { ...p }
 
       let time
@@ -180,11 +180,9 @@ export const Methods = () => {
             <div className="flex flex-col sm:flex-row sm:items-center gap-y-1 sm:gap-y-0 gap-x-3 mb-3 sm:mb-0">
               <div className="flex items-center gap-x-3">
                 <div className="flex items-center gap-x-2">
-                  <Tag>GET</Tag>
-                  <span className="text-zinc-400">|</span>
-                  <Tag>POST</Tag>
+                  <Tag>{parameters.length === 0 ? 'GET' : 'POST'}</Tag>
                 </div>
-                <span className="font-mono text-xs text-zinc-400">/?method={id}</span>
+                <span className="font-mono text-xs text-zinc-400">/{id}</span>
               </div>
               <div className="sm:ml-auto">
                 <Environment />
@@ -246,9 +244,9 @@ export const Methods = () => {
                         </Button>
                       )}
                     </div>
-                    <div className="flex h-9 items-center gap-2 border-y border-b-white/7.5 border-t-transparent bg-white/2.5 bg-zinc-900 px-4 dark:border-b-white/5 dark:bg-white/1">
+                    <div className="overflow-x-auto flex h-9 items-center gap-2 border-y border-b-white/7.5 border-t-transparent bg-white/2.5 bg-zinc-900 px-4 dark:border-b-white/5 dark:bg-white/1">
                       <Tag>{parameters.length === 0 ? 'GET' : 'POST'}</Tag>
-                      <span className="font-mono text-xs text-zinc-400">{endpoint}{parameters.length === 0 ? `/?method=${id}` : ''}</span>
+                      <span className="font-mono text-xs text-zinc-400 whitespace-nowrap">{endpoint}/{id}</span>
                     </div>
                     <CodePanel code={body}>
                       <Code dangerouslySetInnerHTML={{ __html: highlightJSON(body) }} className="language-json" />
