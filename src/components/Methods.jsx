@@ -149,7 +149,7 @@ export const Methods = () => {
   const request = async id => {
     setFetching(true)
     try {
-      const response = await fetch(endpoint, { method: 'POST', body: JSON.stringify(bodies[id]) }).catch(error => { return null })
+      const response = await fetch(`${endpoint}/${id}`, { method: 'POST', body: JSON.stringify(bodies[id]) }).catch(error => { return null })
       setResponses({ ...responses, [id]: response && await response.json() })
     } catch (error) {
       setResponses({ ...responses, [id]: error })
