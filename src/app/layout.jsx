@@ -10,7 +10,9 @@ export const metadata = {
     template: '%s - API Reference',
     default: 'Axelarscan API Reference',
   },
-  image: '/images/ogimage.png',
+  openGraph: {
+    images: '/images/ogimage.png',
+  },
 }
 
 export default async function RootLayout({ children }) {
