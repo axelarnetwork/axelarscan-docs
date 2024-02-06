@@ -11,7 +11,7 @@ export const metadata = {
     default: 'Axelarscan API Reference',
   },
   openGraph: {
-    images: '/images/ogimage.png',
+    images: `${process.env.NEXT_PUBLIC_APP_URL}/images/ogimage.png`,
   },
 }
 
