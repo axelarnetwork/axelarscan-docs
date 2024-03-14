@@ -3,10 +3,10 @@
 The official documentation website for [Axelarscan](https://github.com/axelarnetwork/axelarscan-ui).
 
 ### Prerequisites
-node >= 16.0.0
+node >= 20.0.0
 
 ## Run on [localhost:3000](http://localhost:3000)
 ```bash
-yarn
-yarn dev
+npm i
+npm run dev
 ```
