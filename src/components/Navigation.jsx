@@ -220,6 +220,13 @@ export function Navigation(props) {
 
   useEffect(() => {
     if (APIMethodsStore[getAPINameFromPathname(pathname)]?.methods?.find(d => d.id === window.location.hash.substring(1))) router.push(`${pathname}${window.location.hash}`)
+    else if (pathname) {
+      const pathnames = pathname.split('/').filter(d => d)
+      if (pathnames.length > 0) {
+        const entry = Object.entries(APIMethodsStore).filter(([k, v]) => v && !k.startsWith('set')).find(([k, v]) => v.methods?.find(d => d.id === pathnames[1]))
+        if (entry) router.push(`/${entry[0]}#${pathnames[1]}`)
+      }
+    }
   }, [pathname, router, APIMethodsStore])
 
   return (
