@@ -117,7 +117,7 @@ export function Property({ name, children, type, defaultValue, enums, value, onC
             <dt className="sr-only">Input</dt>
             <dd className="w-full" />
             <input
-              type={['integer', 'float', 'long', 'unixtime'].includes(type) && (typeof defaultValue === 'number' || !isNaN(defaultValue)) ? 'number' : 'string'}
+              type={['integer', 'float', 'long', 'unixtime'].includes(type) && (typeof defaultValue === 'number' || (defaultValue && !isNaN(defaultValue))) ? 'number' : 'string'}
               placeholder={name}
               value={value}
               onChange={e => onChange(e.target.value)}
