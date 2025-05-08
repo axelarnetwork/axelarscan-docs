@@ -153,9 +153,9 @@ const getDefaultBodies = (methods, methodID) => {
             switch (name) {
               case 'sourceChain':
               case 'chain':
-                return [name, 'avalanche']
+                return [name, id === 'estimateITSFee' ? 'xrpl' : 'avalanche']
               case 'destinationChain':
-                return [name, id === 'estimateITSFee' ? 'xrpl' : 'polygon']
+                return [name, id === 'estimateITSFee' ? 'xrpl-evm' : 'polygon']
               case 'symbol':
                 return [name, 'AXL']
               default:
