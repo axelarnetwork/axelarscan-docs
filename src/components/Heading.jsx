@@ -24,7 +24,7 @@ function AnchorIcon(props) {
 
 function Eyebrow({ tag, label }) {
   if (!tag && !label) {
-    return null
+    return
   }
 
   return (
@@ -34,7 +34,9 @@ function Eyebrow({ tag, label }) {
         <span className="h-0.5 w-0.5 rounded-full bg-zinc-300 dark:bg-zinc-600" />
       )}
       {label && (
-        <span className="font-mono text-xs text-zinc-400">{label}</span>
+        <span className="font-mono text-xs text-zinc-400">
+          {label}
+        </span>
       )}
     </div>
   )
@@ -67,11 +69,12 @@ export function Heading({
   ...props
 }) {
   level = level ?? 2
-  let Component = `h${level}`
-  let ref = useRef(null)
-  let registerHeading = useSectionStore((s) => s.registerHeading)
 
-  let inView = useInView(ref, {
+  const Component = `h${level}`
+  const ref = useRef(null)
+  const registerHeading = useSectionStore((s) => s.registerHeading)
+
+  const inView = useInView(ref, {
     margin: `${remToPx(-3.5)}px 0px 0px 0px`,
     amount: 'all',
   })

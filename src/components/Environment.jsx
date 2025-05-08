@@ -13,6 +13,7 @@ export const ENVIRONMENTS = ['mainnet', 'testnet']
 
 export const Environment = () => {
   const { environment, setEnvironment } = useEnvironment()
+
   return (
     <Tab.Group>
       <Tab.List className="-mb-px flex gap-4 text-base font-medium">

@@ -1,13 +1,12 @@
+'use client'
+
 import { forwardRef } from 'react'
 import Link from 'next/link'
 import clsx from 'clsx'
 import { motion, useScroll, useTransform } from 'framer-motion'
 
 import { Logo } from '@/components/Logo'
-import {
-  MobileNavigation,
-  useIsInsideMobileNavigation,
-} from '@/components/MobileNavigation'
+import { MobileNavigation, useIsInsideMobileNavigation } from '@/components/MobileNavigation'
 import { useMobileNavigationStore } from '@/components/MobileNavigation'
 import { MobileSearch, Search } from '@/components/Search'
 import { ThemeToggle } from '@/components/ThemeToggle'
@@ -27,12 +26,12 @@ function TopLevelNavItem({ href, target, children }) {
 }
 
 export const Header = forwardRef(function Header({ className }, ref) {
-  let { isOpen: mobileNavIsOpen } = useMobileNavigationStore()
-  let isInsideMobileNavigation = useIsInsideMobileNavigation()
+  const { isOpen: mobileNavIsOpen } = useMobileNavigationStore()
+  const isInsideMobileNavigation = useIsInsideMobileNavigation()
 
-  let { scrollY } = useScroll()
-  let bgOpacityLight = useTransform(scrollY, [0, 72], [0.5, 0.9])
-  let bgOpacityDark = useTransform(scrollY, [0, 72], [0.2, 0.8])
+  const { scrollY } = useScroll()
+  const bgOpacityLight = useTransform(scrollY, [0, 72], [0.5, 0.9])
+  const bgOpacityDark = useTransform(scrollY, [0, 72], [0.2, 0.8])
 
   return (
     <motion.div
@@ -54,8 +53,7 @@ export const Header = forwardRef(function Header({ className }, ref) {
       <div
         className={clsx(
           'absolute inset-x-0 top-full h-px transition',
-          (isInsideMobileNavigation || !mobileNavIsOpen) &&
-            'bg-zinc-900/7.5 dark:bg-white/7.5',
+          (isInsideMobileNavigation || !mobileNavIsOpen) && 'bg-zinc-900/7.5 dark:bg-white/7.5',
         )}
       />
       <Search />
@@ -68,9 +66,15 @@ export const Header = forwardRef(function Header({ className }, ref) {
       <div className="flex items-center gap-5">
         <nav className="hidden md:block">
           <ul role="list" className="flex items-center gap-8">
-            <TopLevelNavItem href="https://axelarscan.io" target="_blank">Explorer</TopLevelNavItem>
-            <TopLevelNavItem href="https://docs.axelar.dev" target="_blank">Documentation</TopLevelNavItem>
-            <TopLevelNavItem href="https://discord.com/invite/aRZ3Ra6f7D" target="_blank">Support</TopLevelNavItem>
+            <TopLevelNavItem href="https://axelarscan.io" target="_blank">
+              Explorer
+            </TopLevelNavItem>
+            <TopLevelNavItem href="https://docs.axelar.dev" target="_blank">
+              Documentation
+            </TopLevelNavItem>
+            <TopLevelNavItem href="https://discord.com/invite/aRZ3Ra6f7D" target="_blank">
+              Support
+            </TopLevelNavItem>
           </ul>
         </nav>
         <div className="hidden md:block md:h-5 md:w-px md:bg-zinc-900/10 md:dark:bg-white/15" />

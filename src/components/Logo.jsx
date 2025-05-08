@@ -1,3 +1,5 @@
+'use client'
+
 import Image from 'next/image'
 import { useTheme } from 'next-themes'
 
@@ -14,7 +16,9 @@ export function Logo(props) {
         unoptimized
         className="mr-3"
       />
-      <span className="text-lg font-bold">Axelarscan Docs</span>
+      <span className="text-lg font-bold">
+        Axelarscan Docs
+      </span>
     </div>
   )
 }

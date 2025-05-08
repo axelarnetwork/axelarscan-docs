@@ -20,16 +20,27 @@ const highlightJSON = json => {
 
   const delimiter = ' // '
   json = json.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+
   return json.replace(
     /("(\\u[a-zA-Z0-9]{4}|\\[^u]|[^\\"])*"(\s*:)?|\b(true|false|null)\b|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?)/g,
     match => {
       let type = 'number'
-      if (/^"/.test(match)) type = /:$/.test(match) ? 'key' : 'string'
-      else if (/true|false/.test(match)) type = 'boolean'
-      else if (/null/.test(match)) type = 'null'
+
+      if (/^"/.test(match)) {
+        type = /:$/.test(match) ? 'key' : 'string'
+      }
+      else if (/true|false/.test(match)) {
+        type = 'boolean'
+      }
+      else if (/null/.test(match)) {
+        type = 'null'
+      }
 
       const comment = type === 'string' && match.includes(delimiter) ? _.last(match.split(delimiter)).slice(0, -1) : undefined
-      match = comment ? _.head(match.split(delimiter)) : match
+
+      if (comment) {
+        match = _.head(match.split(delimiter))
+      }
 
       return `<span style="color: var(--shiki-token-${type === 'key' ? 'keyword' : 'string'})">${match}${comment ? '"' : ''}</span>${comment ? `${toJson(json) ? ',' : ''}<span class="ml-2" style="color: var(--shiki-token-comment)">// ${comment}</span>${delimiter}` : ''}`
     }
@@ -45,25 +56,40 @@ const parseResponse = (fields, options) => {
     if (!attrs || !Array.isArray(attrs)) return attrs
 
     let data = {}
+
     for (const attr of attrs) {
       const { name, type, description, primitive, attributes, key, value } = { ...attr }
+
       if (primitive) {
         if (attributes) {
           data = parseAttributes(attributes)
-          if (type === '[object]') data = [data]
+
+          if (type === '[object]') {
+            data = [data]
+          }
         }
-        else return `"${name}": "${typeToString(type, description)}"`
+        else {
+          return `"${name}": "${typeToString(type, description)}"`
+        }
       }
       else {
         switch (type) {
           case 'Map':
             if (attributes) {
-              if (name) data[name] = parseAttributes(attributes)
-              else data = parseAttributes(attributes)
+              if (name) {
+                data[name] = parseAttributes(attributes)
+              }
+              else {
+                data = parseAttributes(attributes)
+              }
             }
             else {
-              if (name) data[name] = typeToString(type, description)
-              else data = typeToString(type, description)
+              if (name) {
+                data[name] = typeToString(type, description)
+              }
+              else {
+                data = typeToString(type, description)
+              }
             }
             break
           case 'entry':
@@ -72,31 +98,41 @@ const parseResponse = (fields, options) => {
           default:
             if (attributes) {
               data[name] = parseAttributes(attributes)
-              if (type === '[object]') data[name] = [data[name]]
+
+              if (type === '[object]') {
+                data[name] = [data[name]]
+              }
             }
-            else data[name] = typeToString(type, description)
+            else {
+              data[name] = typeToString(type, description)
+            }
             break
         }
       }
     }
+
     return data
   }
 
   const result = parseAttributes(fields)
-  if (!toJson(result)) return result
+
+  if (!toJson(result)) {
+    return result
+  }
+
   return JSON.stringify(result, null, 2)
 }
 
-const getDefaultBodies = (methods, methodId) => {
+const getDefaultBodies = (methods, methodID) => {
   if (!methods) return {}
 
-  return Object.fromEntries(methods.filter(d => !methodId || d.id === methodId).map(d => {
-    const { id, parameters } = { ...d }
-
-    return [id, Object.fromEntries(_.concat(/*[['method', id]], */parameters.map(p => {
+  return Object.fromEntries(methods.filter(d => !methodID || d.id === methodID).map(({ id, parameters }) => [
+    id,
+    Object.fromEntries(parameters.map(p => {
       const { name, type, required } = { ...p }
 
       let time
+
       switch (name) {
         case 'size':
           return [name, 1]
@@ -110,24 +146,27 @@ const getDefaultBodies = (methods, methodId) => {
           time = moment().startOf('minute')
           return [name, type === 'unixtime' ? time.unix() : time.valueOf()]
         default:
-          if (p.default) return [name, p.default === 'ZeroAddress' ? '0x0000000000000000000000000000000000000000' : p.default]
+          if (p.default) {
+            return [name, p.default === 'ZeroAddress' ? '0x0000000000000000000000000000000000000000' : p.default]
+          }
           else if (required) {
             switch (name) {
               case 'sourceChain':
               case 'chain':
                 return [name, 'avalanche']
               case 'destinationChain':
-                return [name, 'polygon']
+                return [name, id === 'estimateITSFee' ? 'xrpl' : 'polygon']
               case 'symbol':
                 return [name, 'AXL']
               default:
                 return
             }
           }
+
           return
       }
-    }).filter(entry => entry)))]
-  }))
+    }).filter(entry => entry)),
+  ]))
 }
 
 export const Methods = () => {
@@ -138,6 +177,7 @@ export const Methods = () => {
   const pathname = usePathname()
   const { endpoints, methods } = { ...useAPIMethodsStore()[getAPINameFromPathname(pathname)] }
   const { environment } = useEnvironment()
+
   const endpoint = endpoints?.[environment]
 
   useEffect(() => {
@@ -148,12 +188,14 @@ export const Methods = () => {
 
   const request = async id => {
     setFetching(true)
+
     try {
-      const response = await fetch(`${endpoint}/${id}`, { method: 'POST', body: JSON.stringify(bodies[id]) }).catch(error => { return null })
+      const response = await fetch(`${endpoint}/${id}`, { method: 'POST', body: JSON.stringify(bodies[id]) }).catch(error => null)
       setResponses({ ...responses, [id]: response && await response.json() })
     } catch (error) {
       setResponses({ ...responses, [id]: error })
     }
+
     setFetching(false)
   }
 
@@ -172,6 +214,7 @@ export const Methods = () => {
 
         const requiredParameters = parameters.filter(d => d.required)
         const optionalParameters = parameters.filter(d => !d.required)
+
         const body = JSON.stringify({ ...bodies[id] }, null, 2)
         const response = responses[id] ? JSON.stringify(responses[id], null, 2) : undefined
 
@@ -182,7 +225,9 @@ export const Methods = () => {
                 <div className="flex items-center gap-x-2">
                   <Tag>{parameters.length === 0 ? 'GET' : 'POST'}</Tag>
                 </div>
-                <span className="font-mono text-xs text-zinc-400">/{id}</span>
+                <span className="font-mono text-xs text-zinc-400">
+                  /{id}
+                </span>
               </div>
               <div className="sm:ml-auto">
                 <Environment />
@@ -204,12 +249,23 @@ export const Methods = () => {
               <Col>
                 <Markdown>{description}</Markdown>
                 {requiredParameters.length === 0 ? undefined : <>
-                  <Markdown className="mt-2">{`### Required attributes`}</Markdown>
+                  <Markdown>
+                    {`### Required attributes`}
+                  </Markdown>
                   <Properties>
                     {requiredParameters.map(parameter => {
                       const { name, type, description } = { ...parameter }
+
                       return (
-                        <Property key={name} name={name} type={type} defaultValue={parameter.default} enums={parameter.enum} value={bodies[id]?.[name]} onChange={value => inputOnChange(value, id, name)}>
+                        <Property
+                          key={name}
+                          name={name}
+                          type={type}
+                          defaultValue={parameter.default}
+                          enums={parameter.enum}
+                          value={bodies[id]?.[name]}
+                          onChange={value => inputOnChange(value, id, name)}
+                        >
                           {description}
                         </Property>
                       )
@@ -217,12 +273,23 @@ export const Methods = () => {
                   </Properties>
                 </>}
                 {optionalParameters.length === 0 ? undefined : <>
-                  <Markdown className="mt-2">{`### Optional attributes`}</Markdown>
+                  <Markdown>
+                    {`### Optional attributes`}
+                  </Markdown>
                   <Properties>
                     {optionalParameters.map(parameter => {
                       const { name, type, description } = { ...parameter }
+
                       return (
-                        <Property key={name} name={name} type={type} defaultValue={parameter.default} enums={parameter.enum} value={bodies[id]?.[name]} onChange={value => inputOnChange(value, id, name)}>
+                        <Property
+                          key={name}
+                          name={name}
+                          type={type}
+                          defaultValue={parameter.default}
+                          enums={parameter.enum}
+                          value={bodies[id]?.[name]}
+                          onChange={value => inputOnChange(value, id, name)}
+                        >
                           {description}
                         </Property>
                       )
@@ -234,7 +301,9 @@ export const Methods = () => {
                 <div className="my-6 overflow-hidden rounded-2xl bg-zinc-900 shadow-md dark:ring-1 dark:ring-white/10">
                   <div className="not-prose">
                     <div className="flex min-h-[calc(theme(spacing.12)+1px)] flex-wrap items-center gap-x-4 border-b border-zinc-700 bg-zinc-800 px-4 dark:border-zinc-800 dark:bg-transparent">
-                      <h3 className="mr-auto text-xs font-semibold text-white">Request</h3>
+                      <h3 className="mr-auto text-xs font-semibold text-white">
+                        Request
+                      </h3>
                       <Button variant="text" disabled={fetching} onClick={() => request(id)}>
                         {fetching ? 'Fetching...' : 'Try it'}
                       </Button>
@@ -246,7 +315,9 @@ export const Methods = () => {
                     </div>
                     <div className="overflow-x-auto flex h-9 items-center gap-2 border-y border-b-white/7.5 border-t-transparent bg-white/2.5 bg-zinc-900 px-4 dark:border-b-white/5 dark:bg-white/1">
                       <Tag>{parameters.length === 0 ? 'GET' : 'POST'}</Tag>
-                      <span className="font-mono text-xs text-zinc-400 whitespace-nowrap">{endpoint}/{id}</span>
+                      <span className="font-mono text-xs text-zinc-400 whitespace-nowrap">
+                        {endpoint}/{id}
+                      </span>
                     </div>
                     <CodePanel code={body}>
                       <Code dangerouslySetInnerHTML={{ __html: highlightJSON(body) }} className="language-json" />
@@ -256,7 +327,9 @@ export const Methods = () => {
                 <div className="my-6 overflow-hidden rounded-2xl bg-zinc-900 shadow-md dark:ring-1 dark:ring-white/10">
                   <div className="not-prose">
                     <div className="flex min-h-[calc(theme(spacing.12)+1px)] flex-wrap items-start gap-x-4 border-b border-zinc-700 bg-zinc-800 px-4 dark:border-zinc-800 dark:bg-transparent">
-                      <h3 className="mr-auto pt-3 text-xs font-semibold text-white">Response</h3>
+                      <h3 className="mr-auto pt-3 text-xs font-semibold text-white">
+                        Response
+                      </h3>
                     </div>
                     <CodePanel code={response || parseResponse(d.response, { noComment: true })}>
                       <Code dangerouslySetInnerHTML={{ __html: highlightJSON(response || parseResponse(d.response)) }} className="language-json" />

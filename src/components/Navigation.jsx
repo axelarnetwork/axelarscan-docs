@@ -14,7 +14,7 @@ import { getAPINameFromPathname } from '@/lib/utils'
 import { remToPx } from '@/lib/remToPx'
 
 function useInitialValue(value, condition = true) {
-  let initialValue = useRef(value).current
+  const initialValue = useRef(value).current
   return condition ? initialValue : value
 }
 
@@ -51,7 +51,9 @@ function NavLink({
           : 'text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white',
       )}
     >
-      <span className="truncate">{children}</span>
+      <span className="truncate">
+        {children}
+      </span>
       {tag && (
         <Tag variant="small" color="zinc">
           {tag}
@@ -62,7 +64,7 @@ function NavLink({
 }
 
 function VisibleSectionHighlight({ group, pathname }) {
-  let [sections, visibleSections] = useInitialValue(
+  const [sections, visibleSections] = useInitialValue(
     [
       useSectionStore((s) => s.sections),
       useSectionStore((s) => s.visibleSections),
@@ -70,20 +72,18 @@ function VisibleSectionHighlight({ group, pathname }) {
     useIsInsideMobileNavigation(),
   )
 
-  let isPresent = useIsPresent()
-  let firstVisibleSectionIndex = Math.max(
+  const isPresent = useIsPresent()
+
+  const firstVisibleSectionIndex = Math.max(
     0,
     [{ id: '_top' }, ...sections].findIndex(
       (section) => section.id === visibleSections[0],
     ),
   )
-  let itemHeight = remToPx(2)
-  let height = isPresent
-    ? Math.max(1, visibleSections.length) * itemHeight
-    : itemHeight
-  let top =
-    group.links.findIndex((link) => link.href === pathname) * itemHeight +
-    firstVisibleSectionIndex * itemHeight
+
+  const itemHeight = remToPx(2)
+  const height = isPresent ? Math.max(1, visibleSections.length) * itemHeight : itemHeight
+  const top = group.links.findIndex((link) => link.href === pathname) * itemHeight + firstVisibleSectionIndex * itemHeight
 
   return (
     <motion.div
@@ -98,10 +98,10 @@ function VisibleSectionHighlight({ group, pathname }) {
 }
 
 function ActivePageMarker({ group, pathname }) {
-  let itemHeight = remToPx(2)
-  let offset = remToPx(0.25)
-  let activePageIndex = group.links.findIndex((link) => link.href === pathname)
-  let top = offset + activePageIndex * itemHeight
+  const itemHeight = remToPx(2)
+  const offset = remToPx(0.25)
+  const activePageIndex = group.links.findIndex((link) => link.href === pathname)
+  const top = offset + activePageIndex * itemHeight
 
   return (
     <motion.div
@@ -119,17 +119,16 @@ function NavigationGroup({ group, className }) {
   // If this is the mobile navigation then we always render the initial
   // state, so that the state does not change during the close animation.
   // The state will still update when we re-open (re-render) the navigation.
-  let isInsideMobileNavigation = useIsInsideMobileNavigation()
+  const isInsideMobileNavigation = useIsInsideMobileNavigation()
 
   const APIMethodsStore = useAPIMethodsStore()
   const apiName = getAPINameFromPathname(usePathname())
-  let [pathname, sections] = useInitialValue(
+  const [pathname, sections] = useInitialValue(
     [usePathname(), useSectionStore((s) => APIMethodsStore[apiName]?.methods?.map(d => ({ id: d.id, title: d.id, tag: d.parameters.length === 0 ? 'GET' : 'POST' })) || s.sections)],
     isInsideMobileNavigation,
   )
 
-  let isActiveGroup =
-    group.links.findIndex((link) => link.href === pathname) !== -1
+  const isActiveGroup = group.links.findIndex((link) => link.href === pathname) !== -1
 
   return (
     <li className={clsx('relative mt-6', className)}>
@@ -197,7 +196,7 @@ function NavigationGroup({ group, className }) {
   )
 }
 
-export const navigation = [
+export const NAVIGATIONS = [
   {
     title: 'Guides',
     links: [{ title: 'Introduction', href: '/' }],
@@ -219,12 +218,18 @@ export function Navigation(props) {
   const APIMethodsStore = useAPIMethodsStore()
 
   useEffect(() => {
-    if (APIMethodsStore[getAPINameFromPathname(pathname)]?.methods?.find(d => d.id === window.location.hash.substring(1))) router.push(`${pathname}${window.location.hash}`)
+    if (APIMethodsStore[getAPINameFromPathname(pathname)]?.methods?.find(d => d.id === window.location.hash.substring(1))) {
+      router.push(`${pathname}${window.location.hash}`)
+    }
     else if (pathname) {
       const pathnames = pathname.split('/').filter(d => d)
+
       if (pathnames.length > 0) {
         const entry = Object.entries(APIMethodsStore).filter(([k, v]) => v && !k.startsWith('set')).find(([k, v]) => v.methods?.find(d => d.id === pathnames[1]))
-        if (entry) router.push(`/${entry[0]}#${pathnames[1]}`)
+
+        if (entry) {
+          router.push(`/${entry[0]}#${pathnames[1]}`)
+        }
       }
     }
   }, [pathname, router, APIMethodsStore])
@@ -232,10 +237,16 @@ export function Navigation(props) {
   return (
     <nav {...props}>
       <ul role="list">
-        <TopLevelNavItem href="https://axelarscan.io" target="_blank">Explorer</TopLevelNavItem>
-        <TopLevelNavItem href="https://docs.axelar.dev" target="_blank">Documentation</TopLevelNavItem>
-        <TopLevelNavItem href="https://discord.com/invite/aRZ3Ra6f7D" target="_blank">Support</TopLevelNavItem>
-        {navigation.map((group, groupIndex) => (
+        <TopLevelNavItem href="https://axelarscan.io" target="_blank">
+          Explorer
+        </TopLevelNavItem>
+        <TopLevelNavItem href="https://docs.axelar.dev" target="_blank">
+          Documentation
+        </TopLevelNavItem>
+        <TopLevelNavItem href="https://discord.com/invite/aRZ3Ra6f7D" target="_blank">
+          Support
+        </TopLevelNavItem>
+        {NAVIGATIONS.map((group, groupIndex) => (
           <NavigationGroup
             key={group.title}
             group={group}
