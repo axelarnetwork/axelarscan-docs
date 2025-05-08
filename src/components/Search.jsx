@@ -1,27 +1,18 @@
 'use client'
 
-import {
-  forwardRef,
-  Fragment,
-  Suspense,
-  useCallback,
-  useEffect,
-  useId,
-  useRef,
-  useState,
-} from 'react'
+import { forwardRef, Fragment, Suspense, useCallback, useEffect, useId, useRef, useState } from 'react'
 import Highlighter from 'react-highlight-words'
 import { usePathname, useRouter, useSearchParams } from 'next/navigation'
 import { createAutocomplete } from '@algolia/autocomplete-core'
 import { Dialog, Transition } from '@headlessui/react'
 import clsx from 'clsx'
 
-import { navigation } from '@/components/Navigation'
+import { NAVIGATIONS } from '@/components/Navigation'
 
 function useAutocomplete({ close }) {
-  let id = useId()
-  let router = useRouter()
-  let [autocompleteState, setAutocompleteState] = useState({})
+  const id = useId()
+  const router = useRouter()
+  const [autocompleteState, setAutocompleteState] = useState({})
 
   function navigate({ itemUrl }) {
     if (!itemUrl) {
@@ -30,15 +21,12 @@ function useAutocomplete({ close }) {
 
     router.push(itemUrl)
 
-    if (
-      itemUrl ===
-      window.location.pathname + window.location.search + window.location.hash
-    ) {
+    if (itemUrl === window.location.pathname + window.location.search + window.location.hash) {
       close()
     }
   }
 
-  let [autocomplete] = useState(() =>
+  const [autocomplete] = useState(() =>
     createAutocomplete({
       id,
       placeholder: 'Find something...',
@@ -99,7 +87,7 @@ function NoResultsIcon(props) {
 }
 
 function LoadingIcon(props) {
-  let id = useId()
+  const id = useId()
 
   return (
     <svg viewBox="0 0 20 20" fill="none" aria-hidden="true" {...props}>
@@ -145,14 +133,10 @@ function SearchResult({
   collection,
   query,
 }) {
-  let id = useId()
+  const id = useId()
 
-  let sectionTitle = navigation.find((section) =>
-    section.links.find((link) => link.href === result.url.split('#')[0]),
-  )?.title
-  let hierarchy = [sectionTitle, result.pageTitle].filter(
-    (x) => typeof x === 'string',
-  )
+  const sectionTitle = NAVIGATIONS.find((section) => section.links.find((link) => link.href === result.url.split('#')[0]))?.title
+  const hierarchy = [sectionTitle, result.pageTitle].filter((x) => typeof x === 'string')
 
   return (
     <li
@@ -182,13 +166,7 @@ function SearchResult({
           {hierarchy.map((item, itemIndex, items) => (
             <Fragment key={itemIndex}>
               <HighlightQuery text={item} query={query} />
-              <span
-                className={
-                  itemIndex === items.length - 1
-                    ? 'sr-only'
-                    : 'mx-2 text-zinc-300 dark:text-zinc-700'
-                }
-              >
+              <span className={itemIndex === items.length - 1 ? 'sr-only' : 'mx-2 text-zinc-300 dark:text-zinc-700'}>
                 /
               </span>
             </Fragment>
@@ -235,7 +213,7 @@ const SearchInput = forwardRef(function SearchInput(
   { autocomplete, autocompleteState, onClose },
   inputRef,
 ) {
-  let inputProps = autocomplete.getInputProps({ inputElement: null })
+  const inputProps = autocomplete.getInputProps({ inputElement: null })
 
   return (
     <div className="group relative flex h-12">
@@ -248,11 +226,7 @@ const SearchInput = forwardRef(function SearchInput(
         )}
         {...inputProps}
         onKeyDown={(event) => {
-          if (
-            event.key === 'Escape' &&
-            !autocompleteState.isOpen &&
-            autocompleteState.query === ''
-          ) {
+          if (event.key === 'Escape' && !autocompleteState.isOpen && autocompleteState.query === '') {
             // In Safari, closing the dialog with the escape key can sometimes cause the scroll position to jump to the
             // bottom of the page. This is a workaround for that until we can figure out a proper fix in Headless UI.
             if (document.activeElement instanceof HTMLElement) {
@@ -260,7 +234,8 @@ const SearchInput = forwardRef(function SearchInput(
             }
 
             onClose()
-          } else {
+          }
+          else {
             inputProps.onKeyDown(event)
           }
         }}
@@ -275,20 +250,20 @@ const SearchInput = forwardRef(function SearchInput(
 })
 
 function SearchDialog({ open, setOpen, className }) {
-  let formRef = useRef(null)
-  let panelRef = useRef(null)
-  let inputRef = useRef(null)
-  let { autocomplete, autocompleteState } = useAutocomplete({
+  const formRef = useRef(null)
+  const panelRef = useRef(null)
+  const inputRef = useRef(null)
+  const { autocomplete, autocompleteState } = useAutocomplete({
     close() {
       setOpen(false)
     },
   })
-  let pathname = usePathname()
-  let searchParams = useSearchParams()
+  const pathname = usePathname()
+  const searchParams = useSearchParams()
 
   useEffect(() => {
     setOpen(false)
-  }, [pathname, searchParams, setOpen])
+  }, [setOpen, pathname, searchParams])
 
   useEffect(() => {
     if (open) {
@@ -379,8 +354,8 @@ function SearchDialog({ open, setOpen, className }) {
 }
 
 function useSearchProps() {
-  let buttonRef = useRef(null)
-  let [open, setOpen] = useState(false)
+  const buttonRef = useRef(null)
+  const [open, setOpen] = useState(false)
 
   return {
     buttonProps: {
@@ -393,8 +368,8 @@ function useSearchProps() {
       open,
       setOpen: useCallback(
         (open) => {
-          let { width = 0, height = 0 } =
-            buttonRef.current?.getBoundingClientRect() ?? {}
+          const { width = 0, height = 0 } = buttonRef.current?.getBoundingClientRect() ?? {}
+
           if (!open || (width !== 0 && height !== 0)) {
             setOpen(open)
           }
@@ -406,13 +381,11 @@ function useSearchProps() {
 }
 
 export function Search() {
-  let [modifierKey, setModifierKey] = useState()
-  let { buttonProps, dialogProps } = useSearchProps()
+  const [modifierKey, setModifierKey] = useState()
+  const { buttonProps, dialogProps } = useSearchProps()
 
   useEffect(() => {
-    setModifierKey(
-      /(Mac|iPhone|iPod|iPad)/i.test(navigator.platform) ? '⌘' : 'Ctrl ',
-    )
+    setModifierKey(/(Mac|iPhone|iPod|iPad)/i.test(navigator.platform) ? '⌘' : 'Ctrl ')
   }, [])
 
   return (
@@ -425,8 +398,12 @@ export function Search() {
         <SearchIcon className="h-5 w-5 stroke-current" />
         Find something...
         <kbd className="ml-auto text-2xs text-zinc-400 dark:text-zinc-500">
-          <kbd className="font-sans">{modifierKey}</kbd>
-          <kbd className="font-sans">K</kbd>
+          <kbd className="font-sans">
+            {modifierKey}
+          </kbd>
+          <kbd className="font-sans">
+            K
+          </kbd>
         </kbd>
       </button>
       <Suspense fallback={null}>
@@ -437,7 +414,7 @@ export function Search() {
 }
 
 export function MobileSearch() {
-  let { buttonProps, dialogProps } = useSearchProps()
+  const { buttonProps, dialogProps } = useSearchProps()
 
   return (
     <div className="contents lg:hidden">

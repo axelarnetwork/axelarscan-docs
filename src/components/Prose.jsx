@@ -1,7 +1,9 @@
+'use client'
+
 import clsx from 'clsx'
 
 export function Prose({ as, className, ...props }) {
-  let Component = as ?? 'div'
+  const Component = as ?? 'div'
 
   return (
     <Component

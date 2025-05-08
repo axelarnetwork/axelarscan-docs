@@ -14,6 +14,7 @@ function ThemeWatcher() {
 
     function onMediaChange() {
       let systemTheme = media.matches ? 'dark' : 'light'
+
       if (resolvedTheme === systemTheme) {
         setTheme('system')
       }
@@ -27,7 +28,7 @@ function ThemeWatcher() {
     }
   }, [resolvedTheme, setTheme])
 
-  return null
+  return
 }
 
 export const useAPIMethodsStore = create()(set => ({
@@ -63,13 +64,15 @@ const ConfigLoader = () => {
           default:
             break
         }
+
         resolve()
       })))
     }
+
     getData()
   }, [setAxelarscan, setValidator, setTokenTransfer, setGMP])
 
-  return null
+  return
 }
 
 export function Providers({ children }) {

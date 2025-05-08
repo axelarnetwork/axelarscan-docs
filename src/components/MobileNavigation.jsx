@@ -1,13 +1,6 @@
 'use client'
 
-import {
-  createContext,
-  Fragment,
-  Suspense,
-  useContext,
-  useEffect,
-  useRef,
-} from 'react'
+import { createContext, Fragment, Suspense, useContext, useEffect, useRef } from 'react'
 import { usePathname, useSearchParams } from 'next/navigation'
 import { Dialog, Transition } from '@headlessui/react'
 import { motion } from 'framer-motion'
@@ -47,28 +40,25 @@ function XIcon(props) {
 const IsInsideMobileNavigationContext = createContext(false)
 
 function MobileNavigationDialog({ isOpen, close }) {
-  let pathname = usePathname()
-  let searchParams = useSearchParams()
-  let initialPathname = useRef(pathname).current
-  let initialSearchParams = useRef(searchParams).current
+  const pathname = usePathname()
+  const searchParams = useSearchParams()
+  const initialPathname = useRef(pathname).current
+  const initialSearchParams = useRef(searchParams).current
 
   useEffect(() => {
     if (pathname !== initialPathname || searchParams !== initialSearchParams) {
       close()
     }
-  }, [pathname, searchParams, close, initialPathname, initialSearchParams])
+  }, [close, pathname, searchParams, initialPathname, initialSearchParams])
 
   function onClickDialog(event) {
     if (!(event.target instanceof HTMLElement)) {
       return
     }
 
-    let link = event.target.closest('a')
-    if (
-      link &&
-      link.pathname + link.search + link.hash ===
-        window.location.pathname + window.location.search + window.location.hash
-    ) {
+    const link = event.target.closest('a')
+
+    if (link && link.pathname + link.search + link.hash === window.location.pathname + window.location.search + window.location.hash) {
       close()
     }
   }
@@ -139,9 +129,10 @@ export const useMobileNavigationStore = create()((set) => ({
 }))
 
 export function MobileNavigation() {
-  let isInsideMobileNavigation = useIsInsideMobileNavigation()
-  let { isOpen, toggle, close } = useMobileNavigationStore()
-  let ToggleIcon = isOpen ? XIcon : MenuIcon
+  const isInsideMobileNavigation = useIsInsideMobileNavigation()
+  const { isOpen, toggle, close } = useMobileNavigationStore()
+
+  const ToggleIcon = isOpen ? XIcon : MenuIcon
 
   return (
     <IsInsideMobileNavigationContext.Provider value={true}>

@@ -8,12 +8,11 @@ import { TbAnalyze, TbArrowsExchange, TbServer } from 'react-icons/tb'
 import { GridPattern } from '@/components/GridPattern'
 import { Heading } from '@/components/Heading'
 
-const apis = [
+const APIS = [
   {
     href: '/axelarscan',
     name: 'Axelarscan API',
-    description:
-      'Retrieve information about the Axelar network and the AXL token. Access details like Circular supply, Inflation, TVL, and more.',
+    description: 'Retrieve information about the Axelar network and the AXL token. Access details like Circular supply, Inflation, TVL, and more.',
     icon: TbAnalyze,
     pattern: {
       y: 16,
@@ -26,8 +25,7 @@ const apis = [
   {
     href: '/validator',
     name: 'Validator API',
-    description:
-      'Access metrics associated with validators on the Axelar network, including heartbeat, uptime, proposed blocks, and more.',
+    description: 'Access metrics associated with validators on the Axelar network, including heartbeat, uptime, proposed blocks, and more.',
     icon: TbServer,
     pattern: {
       y: -6,
@@ -40,8 +38,7 @@ const apis = [
   {
     href: '/token-transfer',
     name: 'Token Transfer API',
-    description:
-      'Gain insights into Axelar\'s Cross-Chain Token Transfer, covering status updates and related statistics.',
+    description: 'Gain insights into Axelar\'s Cross-Chain Token Transfer, covering status updates and related statistics.',
     icon: TbArrowsExchange,
     pattern: {
       y: 32,
@@ -54,8 +51,7 @@ const apis = [
   {
     href: '/gmp',
     name: 'GMP API',
-    description:
-      'Obtain information related to Axelar\'s GMP calls, including status updates and gas estimation details.',
+    description: 'Obtain information related to Axelar\'s GMP calls, including status updates and gas estimation details.',
     icon: FiCode,
     pattern: {
       y: 22,
@@ -73,8 +69,8 @@ function APIIcon({ icon: Icon }) {
 }
 
 function APIPattern({ mouseX, mouseY, ...gridProps }) {
-  let maskImage = useMotionTemplate`radial-gradient(180px at ${mouseX}px ${mouseY}px, white, transparent)`
-  let style = { maskImage, WebkitMaskImage: maskImage }
+  const maskImage = useMotionTemplate`radial-gradient(180px at ${mouseX}px ${mouseY}px, white, transparent)`
+  const style = { maskImage, WebkitMaskImage: maskImage }
 
   return (
     <div className="pointer-events-none">
@@ -108,11 +104,12 @@ function APIPattern({ mouseX, mouseY, ...gridProps }) {
 }
 
 function API({ data }) {
-  let mouseX = useMotionValue(0)
-  let mouseY = useMotionValue(0)
+  const mouseX = useMotionValue(0)
+  const mouseY = useMotionValue(0)
 
   function onMouseMove({ currentTarget, clientX, clientY }) {
-    let { left, top } = currentTarget.getBoundingClientRect()
+    const { left, top } = currentTarget.getBoundingClientRect()
+
     mouseX.set(clientX - left)
     mouseY.set(clientY - top)
   }
@@ -148,7 +145,7 @@ export function APIs() {
         APIs
       </Heading>
       <div className="not-prose mt-4 grid grid-cols-1 gap-8 border-t border-zinc-900/5 pt-10 dark:border-white/5 sm:grid-cols-2 xl:grid-cols-4">
-        {apis.map(api => (
+        {APIS.map(api => (
           <API key={api.href} data={api} />
         ))}
       </div>
