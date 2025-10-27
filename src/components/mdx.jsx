@@ -128,7 +128,7 @@ export function Property({ name, children, type, defaultValue, enums, value, onC
             <input
               type={['integer', 'float', 'long', 'unixtime'].includes(type) && (['number', 'undefined'].includes(typeof defaultValue) || !isNaN(defaultValue)) ? 'number' : 'string'}
               placeholder={name}
-              value={typeof value === 'object' ? JSON.stringify(value) : value}
+              value={typeof value === 'object' && value !== null ? JSON.stringify(value) : value}
               onChange={e => onChange(e.target.value)}
               className="bg-zinc-50 dark:bg-zinc-800 rounded-md border-0 sm:text-sm sm:leading-6 text-zinc-800 dark:text-zinc-50 py-1 px-2"
             />

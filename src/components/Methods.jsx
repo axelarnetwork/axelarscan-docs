@@ -237,7 +237,7 @@ export const Methods = () => {
     // Filter out empty string values to keep the request clean
     const cleanedBody = Object.fromEntries(
       Object.entries(updatedBody).filter(([key, value]) => 
-        value !== '' && value !== null && value !== undefined
+        value || typeof value !== 'string'
       )
     )
     
