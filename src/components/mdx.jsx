@@ -1,15 +1,15 @@
 'use client'
 
-import Link from 'next/link'
 import clsx from 'clsx'
+import Link from 'next/link'
 
 import { Heading } from '@/components/Heading'
 import { Prose } from '@/components/Prose'
+import { Tag } from '@/components/Tag'
 
 export const a = Link
 export { Button } from '@/components/Button'
-export { CodeGroup, Code as code, Pre as pre } from '@/components/Code'
-import { Tag } from '@/components/Tag'
+export { Code as code, CodeGroup, Pre as pre } from '@/components/Code'
 
 export function wrapper({ children }) {
   return (
@@ -128,7 +128,7 @@ export function Property({ name, children, type, defaultValue, enums, value, onC
             <input
               type={['integer', 'float', 'long', 'unixtime'].includes(type) && (['number', 'undefined'].includes(typeof defaultValue) || !isNaN(defaultValue)) ? 'number' : 'string'}
               placeholder={name}
-              value={value}
+              value={typeof value === 'object' && value !== null ? JSON.stringify(value) : value}
               onChange={e => onChange(e.target.value)}
               className="bg-zinc-50 dark:bg-zinc-800 rounded-md border-0 sm:text-sm sm:leading-6 text-zinc-800 dark:text-zinc-50 py-1 px-2"
             />

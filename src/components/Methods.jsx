@@ -1,19 +1,19 @@
 'use client'
 
-import { useEffect, useState } from 'react'
-import Link from 'next/link'
-import { usePathname } from 'next/navigation'
-import Markdown from 'react-markdown'
 import _ from 'lodash'
 import moment from 'moment'
+import Link from 'next/link'
+import { usePathname } from 'next/navigation'
+import { useEffect, useState } from 'react'
+import Markdown from 'react-markdown'
 
-import { Environment, useEnvironment } from '@/components/Environment'
-import { Row, Col, Properties, Property } from '@/components/mdx'
-import { CodePanel, Code } from '@/components/Code'
-import { Tag } from '@/components/Tag'
-import { Button } from '@/components/Button'
 import { useAPIMethodsStore } from '@/app/providers'
-import { toJson, getAPINameFromPathname } from '@/lib/utils'
+import { Button } from '@/components/Button'
+import { Code, CodePanel } from '@/components/Code'
+import { Environment, useEnvironment } from '@/components/Environment'
+import { Col, Properties, Property, Row } from '@/components/mdx'
+import { Tag } from '@/components/Tag'
+import { getAPINameFromPathname, toJson } from '@/lib/utils'
 
 const highlightJSON = json => {
   if (!json) return ''
@@ -145,6 +145,8 @@ const getDefaultBodies = (methods, methodID) => {
         case 'timestamp':
           time = moment().startOf('minute')
           return [name, type === 'unixtime' ? time.unix() : time.valueOf()]
+        case 'sort':
+          return [name, [{ 'call.block_timestamp': { order: 'desc' } }]]
         default:
           if (p.default) {
             return [name, p.default === 'ZeroAddress' ? '0x0000000000000000000000000000000000000000' : p.default]
@@ -205,7 +207,42 @@ export const Methods = () => {
     setFetching(false)
   }
 
-  const inputOnChange = (value, id, name) => setBodies({ ...bodies, [id]: Object.fromEntries(Object.entries({ ...bodies[id], [name]: value }).filter(([k, v]) => v || typeof v !== 'string')) })
+  const inputOnChange = (value, methodId, parameterName) => {
+    // Parse JSON strings back to objects/arrays for complex parameters
+    const parseValue = (inputValue) => {
+      if (typeof inputValue !== 'string') {
+        return inputValue
+      }
+      
+      const trimmedValue = inputValue.trim()
+      const isJsonLike = trimmedValue.startsWith('[') || trimmedValue.startsWith('{')
+      
+      if (!isJsonLike) {
+        return inputValue
+      }
+      
+      try {
+        return JSON.parse(inputValue)
+      } catch (error) {
+        // If JSON parsing fails, return the original string
+        return inputValue
+      }
+    }
+    
+    // Update the request body for this method
+    const parsedValue = parseValue(value)
+    const currentBody = bodies[methodId] || {}
+    const updatedBody = { ...currentBody, [parameterName]: parsedValue }
+    
+    // Filter out empty string values to keep the request clean
+    const cleanedBody = Object.fromEntries(
+      Object.entries(updatedBody).filter(([key, value]) => 
+        value || typeof value !== 'string'
+      )
+    )
+    
+    setBodies({ ...bodies, [methodId]: cleanedBody })
+  }
 
   return methods && (
     <div className="xl:max-w-none flex flex-col">
